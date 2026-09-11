@@ -13,10 +13,10 @@
         body {
             color:#333;
         }
-        /* ========== 导航栏【已修改：潘通359、微软雅黑加粗、靠右】 ========== */
+        /* ========== 导航栏【新版：白背景、左侧logo、文字Pantone350、加高导航】 ========== */
         nav {
-            background-color: #009E49; /* Pantone 359 */
-            padding: 1.2rem 0;
+            background-color: #FFFFFF; /*导航背景白色*/
+            padding: 1rem 0;
             position: fixed;
             width:100%;
             top:0;
@@ -26,23 +26,32 @@
             max-width:1200px;
             margin:0 auto;
             display:flex;
-            gap:2.5rem;
+            align-items:center; /*垂直居中logo和菜单文字*/
+            justify-content:space-between; /*左边logo，右边菜单*/
             padding:0 2rem;
-            justify-content:flex-end; /*导航菜单靠右对齐*/
         }
-        .nav-container a {
-            color:#fff;
+        .logo img{
+            width:240px;
+            height:100px;
+            object-fit:contain;
+        }
+        .menu-group{
+            display:flex;
+            gap:2.5rem;
+        }
+        .menu-group a {
+            color:#006847; /*潘通350 网页色*/
             text-decoration:none;
             font-size:16px;
             font-family:"Microsoft YaHei",sans-serif;
             font-weight:bold;
         }
-        .nav-container a:hover{
-            color:#d4ffb8;
+        .menu-group a:hover{
+            color:#009E49;
         }
-        /* ========== Banner轮播 高度50vh=半个屏幕 ========== */
+        /* ========== Banner轮播 固定高度800px，适配你的1920*800图片 ========== */
         .banner-wrap{
-            margin-top:62px; /* 避开fixed导航栏高度 */
+            margin-top:120px; /*导航加高，这里同步加大距离，防止banner被导航盖住*/
             width:100%;
             height:800px;
             overflow:hidden;
@@ -84,14 +93,19 @@
     </style>
 </head>
 <body>
-<!-- 导航 -->
+<!-- 导航 左侧Logo + 右侧菜单 -->
 <nav>
     <div class="nav-container">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="products.html">Products</a>
-        <a href="news.html">News</a>
-        <a href="contact.html">Contact</a>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Company Logo">
+        </div>
+        <div class="menu-group">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </div>
 </nav>
 
@@ -140,7 +154,7 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
 })
 </script>
 
-<!-- 下面这里后面再加产品板块，先保留空着 -->
+<!-- 下面后续添加产品板块 -->
 
 </body>
 </html>
