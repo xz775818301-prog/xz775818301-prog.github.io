@@ -13,22 +13,26 @@
         body {
             color:#333;
         }
-        /* ========== 导航栏【新版：白背景、左侧logo、文字Pantone350、加高导航】 ========== */
+        /* ========== 导航栏【修改：导航固定高度100px，logo左外边距50px，Contact距离右侧100px】 ========== */
         nav {
             background-color: #FFFFFF; /*导航背景白色*/
-            padding: 1rem 0;
+            height:100px; /*导航栏固定高度100px*/
             position: fixed;
             width:100%;
             top:0;
             z-index:99;
         }
         .nav-container{
-            max-width:1200px;
-            margin:0 auto;
+            height:100%;
+            max-width:100%;
+            margin:0;
             display:flex;
             align-items:center; /*垂直居中logo和菜单文字*/
-            justify-content:space-between; /*左边logo，右边菜单*/
-            padding:0 2rem;
+            justify-content:space-between;
+            padding:0;
+        }
+        .logo{
+            margin-left:50px; /*logo距离屏幕最左侧50px*/
         }
         .logo img{
             width:240px;
@@ -38,6 +42,7 @@
         .menu-group{
             display:flex;
             gap:2.5rem;
+            margin-right:100px; /*最右侧Contact距离屏幕右边缘100px*/
         }
         .menu-group a {
             color:#006847; /*潘通350 网页色*/
@@ -51,7 +56,7 @@
         }
         /* ========== Banner轮播 固定高度800px，适配你的1920*800图片 ========== */
         .banner-wrap{
-            margin-top:120px; /*导航加高，这里同步加大距离，防止banner被导航盖住*/
+            margin-top:100px; /*导航高度改为100px，同步修改上边距，防止遮挡banner*/
             width:100%;
             height:800px;
             overflow:hidden;
