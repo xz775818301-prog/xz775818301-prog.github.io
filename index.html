@@ -13,7 +13,7 @@
         body {
             color:#333;
         }
-        /* ========== 导航栏【修改：导航固定高度100px，logo左外边距50px，Contact距离右侧100px】 ========== */
+        /* ========== 导航栏 固定高度100px ========== */
         nav {
             background-color: #FFFFFF; /*导航背景白色*/
             height:100px; /*导航栏固定高度100px*/
@@ -54,9 +54,9 @@
         .menu-group a:hover{
             color:#009E49;
         }
-        /* ========== Banner轮播 固定高度800px，适配你的1920*800图片 ========== */
+        /* ========== Banner轮播 固定高度800px ========== */
         .banner-wrap{
-            margin-top:100px; /*导航高度改为100px，同步修改上边距，防止遮挡banner*/
+            margin-top:100px; /*导航高度100px*/
             width:100%;
             height:800px;
             overflow:hidden;
@@ -94,6 +94,51 @@
         .next{right:20px;}
         .banner-btn:hover{
             background:#fff;
+        }
+
+        /* ========== Our Products 产品板块 ========== */
+        .product-section{
+            width:100%;
+            padding:80px 0;
+            background:#f8f8f8;
+        }
+        .container{
+            max-width:1920px;
+            margin:0 auto;
+            padding:0 40px;
+        }
+        .section-title{
+            text-align:center;
+            font-size:42px;
+            color:#333;
+            margin:0 0 16px;
+            font-family:"Microsoft YaHei",sans-serif;
+        }
+        .black-line{
+            width:120px;
+            height:2px;
+            background:#000000;
+            margin:0 auto 60px;
+        }
+        .product-grid{
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap:45px 30px;
+        }
+        .product-item{
+            text-align:center;
+        }
+        .product-name{
+            font-family:"Microsoft YaHei",sans-serif;
+            font-size:20px;
+            color:#009E49; /*潘通359*/
+            text-shadow:1px 1px 2px #000000; /*黑色文字阴影*/
+            margin-bottom:20px;
+        }
+        .product-img-box img{
+            width:600px;
+            height:400px;
+            object-fit:cover;
         }
     </style>
 </head>
@@ -159,7 +204,53 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
 })
 </script>
 
-<!-- 下面后续添加产品板块 -->
+<!-- ========== Our Products 产品板块 6张图片链接已全部填入 ========== -->
+<section class="product-section">
+    <div class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="black-line"></div>
+        <div class="product-grid">
+            <!-- 第1行 -->
+            <div class="product-item">
+                <h3 class="product-name">Plastic Sushi Container</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="Plastic Sushi Container">
+                </div>
+            </div>
+            <div class="product-item">
+                <h3 class="product-name">Paper Sushi Container</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg" alt="Paper Sushi Container">
+                </div>
+            </div>
+            <div class="product-item">
+                <h3 class="product-name">Bagasse Bento Box</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg" alt="Bagasse Bento Box">
+                </div>
+            </div>
+            <!-- 第2行 -->
+            <div class="product-item">
+                <h3 class="product-name">Party Tray</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%204.jpg" alt="Party Tray">
+                </div>
+            </div>
+            <div class="product-item">
+                <h3 class="product-name">Sauce Bottle</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%205.jpg" alt="Sauce Bottle">
+                </div>
+            </div>
+            <div class="product-item">
+                <h3 class="product-name">Paper Bag</h3>
+                <div class="product-img-box">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%206.jpg" alt="Paper Bag">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
