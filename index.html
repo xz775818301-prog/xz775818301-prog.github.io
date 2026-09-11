@@ -9,14 +9,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
         body {
             color:#333;
         }
-        /* ========== 导航栏 ========== */
+        /* ========== 导航栏【已修改：潘通359、微软雅黑加粗、靠右】 ========== */
         nav {
-            background-color: #222;
+            background-color: #009E49; /* Pantone 359 */
             padding: 1.2rem 0;
             position: fixed;
             width:100%;
@@ -29,14 +28,17 @@
             display:flex;
             gap:2.5rem;
             padding:0 2rem;
+            justify-content:flex-end; /*导航菜单靠右对齐*/
         }
         .nav-container a {
             color:#fff;
             text-decoration:none;
             font-size:16px;
+            font-family:"Microsoft YaHei",sans-serif;
+            font-weight:bold;
         }
         .nav-container a:hover{
-            color:#3498db;
+            color:#d4ffb8;
         }
         /* ========== Banner轮播 高度50vh=半个屏幕 ========== */
         .banner-wrap{
