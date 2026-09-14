@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmony Pack | About Us</title>
+    <!-- ===== favicon 网页小图标 havicon.png ===== -->
+    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/havicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/havicon.png" type="image/png">
     <style>
         *{
             margin:0;
@@ -43,6 +46,10 @@
             color:#009E49;
             text-decoration:none;
             transition:0.3s;
+        }
+        /* 当前页面高亮 */
+        .nav-menu a.active{
+            color:var(--darkgreen);
         }
         .nav-menu a:hover{
             color:var(--darkgreen);
@@ -343,7 +350,7 @@
     </div>
     <div class="nav-menu">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="about.html" class="active">About</a>
         <a href="products.html">Products</a>
         <a href="news.html">News</a>
         <a href="#contact">Contact</a>
