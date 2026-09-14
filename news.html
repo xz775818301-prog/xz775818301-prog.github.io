@@ -11,7 +11,7 @@
             box-sizing: border-box;
             font-family: "Microsoft YaHei", sans-serif;
         }
-        /* 导航栏（和about.html/index.html完全统一） */
+        /* 导航栏（三页面统一） */
         nav {
             height: 100px;
             background: #ffffff;
@@ -40,11 +40,37 @@
             text-decoration: none;
         }
 
+        /* 新闻外层容器，用于放置全屏透明logo背景 */
+        .news-page-wrap {
+            position: relative;
+            /* 视差滚动核心 */
+            background-image: url("https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg");
+            background-attachment: fixed;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        /* 50%透明遮罩层，控制logo透明度 */
+        .news-page-wrap::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            background-image: url("https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity:0.5;
+            z-index:0;
+            pointer-events:none;
+        }
+
         /* 顶部循环滚动新闻跑马灯 */
         .marquee-wrap {
             background-color: #009E49;
             overflow: hidden;
             padding:12px 0;
+            position:relative;
+            z-index:2;
         }
         .marquee-content {
             display: inline-block;
@@ -63,12 +89,15 @@
             max-width: 1200px;
             margin: 60px auto;
             padding:0 20px;
+            position:relative;
+            z-index:2;
         }
         .news-item {
             border:1px solid #eee;
             border-radius:10px;
             margin-bottom:30px;
             overflow:hidden;
+            background:#ffffffdd; /* 半透明白底，让文字容易阅读 */
         }
         .news-header {
             display:flex;
@@ -131,67 +160,69 @@
     </div>
 </nav>
 
-<!--循环滚动新闻标题栏-->
-<div class="marquee-wrap">
-    <div class="marquee-content">
-        ✦ New Product Launch: Biodegradable Bagasse Food Containers ✦ Attended Global Food Packaging Exhibition 2026 ✦ Custom Packaging Order from European Client ✦
-    </div>
-</div>
-
-<!--新闻列表区域-->
-<div class="news-container">
-    <!--新闻1-->
-    <div class="news-item">
-        <div class="news-header" onclick="toggleNews(this)">
-            <div class="news-title-date">
-                <h3>New Product Launch: Biodegradable Bagasse Food Containers</h3>
-                <p>Date: Aug 15, 2026</p>
-            </div>
-            <span class="arrow-icon">▼</span>
+<div class="news-page-wrap">
+    <!--循环滚动新闻标题栏-->
+    <div class="marquee-wrap">
+        <div class="marquee-content">
+            ✦ New Product Launch: Biodegradable Bagasse Food Containers ✦ Attended Global Food Packaging Exhibition 2026 ✦ Custom Packaging Order from European Client ✦
         </div>
-        <div class="news-content-wrap">
-            <div class="news-content">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg" alt="news pic">
-                <div class="news-text">
-                    We are pleased to release our new upgraded bagasse bento box series. Made from sugarcane fiber, fully compostable and food-safe. It is microwave safe and leak-proof, ideal for takeaway restaurants, catering and supermarkets. We support custom logo printing and size customization for global wholesale buyers.
+    </div>
+
+    <!--新闻列表区域-->
+    <div class="news-container">
+        <!--新闻1-->
+        <div class="news-item">
+            <div class="news-header" onclick="toggleNews(this)">
+                <div class="news-title-date">
+                    <h3>New Product Launch: Biodegradable Bagasse Food Containers</h3>
+                    <p>Date: Aug 15, 2026</p>
+                </div>
+                <span class="arrow-icon">▼</span>
+            </div>
+            <div class="news-content-wrap">
+                <div class="news-content">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg" alt="news pic">
+                    <div class="news-text">
+                        We are pleased to release our new upgraded bagasse bento box series. Made from sugarcane fiber, fully compostable and food-safe. It is microwave safe and leak-proof, ideal for takeaway restaurants, catering and supermarkets. We support custom logo printing and size customization for global wholesale buyers.
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--新闻2-->
-    <div class="news-item">
-        <div class="news-header" onclick="toggleNews(this)">
-            <div class="news-title-date">
-                <h3>Attended Global Food Packaging Exhibition 2026</h3>
-                <p>Date: Jul 28, 2026</p>
+        <!--新闻2-->
+        <div class="news-item">
+            <div class="news-header" onclick="toggleNews(this)">
+                <div class="news-title-date">
+                    <h3>Attended Global Food Packaging Exhibition 2026</h3>
+                    <p>Date: Jul 28, 2026</p>
+                </div>
+                <span class="arrow-icon">▼</span>
             </div>
-            <span class="arrow-icon">▼</span>
-        </div>
-        <div class="news-content-wrap">
-            <div class="news-content">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner2.jpg" alt="news pic">
-                <div class="news-text">
-                    Harmony Pack joined the international packaging exhibition, met many overseas buyers. We displayed plastic sushi containers, sauce bottles, paper bags and degradable tableware. Many clients showed strong interest in our OEM & ODM service for food packaging.
+            <div class="news-content-wrap">
+                <div class="news-content">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner2.jpg" alt="news pic">
+                    <div class="news-text">
+                        Harmony Pack joined the international packaging exhibition, met many overseas buyers. We displayed plastic sushi containers, sauce bottles, paper bags and degradable tableware. Many clients showed strong interest in our OEM & ODM service for food packaging.
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--新闻3-->
-    <div class="news-item">
-        <div class="news-header" onclick="toggleNews(this)">
-            <div class="news-title-date">
-                <h3>Custom Packaging Order from European Client</h3>
-                <p>Date: Jun 10, 2026</p>
+        <!--新闻3-->
+        <div class="news-item">
+            <div class="news-header" onclick="toggleNews(this)">
+                <div class="news-title-date">
+                    <h3>Custom Packaging Order from European Client</h3>
+                    <p>Date: Jun 10, 2026</p>
+                </div>
+                <span class="arrow-icon">▼</span>
             </div>
-            <span class="arrow-icon">▼</span>
-        </div>
-        <div class="news-content-wrap">
-            <div class="news-content">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner3.jpg" alt="news pic">
-                <div class="news-text">
-                    We successfully finished a large custom packaging project for a food retailer in Europe. Including customized printed sushi trays and disposable sauce cups. Our one-stop service covers product design, mold making, sample testing and mass production.
+            <div class="news-content-wrap">
+                <div class="news-content">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner3.jpg" alt="news pic">
+                    <div class="news-text">
+                        We successfully finished a large custom packaging project for a food retailer in Europe. Including customized printed sushi trays and disposable sauce cups. Our one-stop service covers product design, mold making, sample testing and mass production.
+                    </div>
                 </div>
             </div>
         </div>
