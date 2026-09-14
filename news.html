@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Pack | News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        /* 导航栏（和about.html/index.html完全统一） */
+        nav {
+            height: 100px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-logo img {
+            width: 240px;
+            height: 100px;
+            object-fit: contain;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 48px;
+            margin-right: 100px;
+        }
+        .nav-menu a {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006633;
+            text-decoration: none;
+        }
 
+        /* 顶部循环滚动新闻跑马灯 */
+        .marquee-wrap {
+            background-color: #009E49;
+            overflow: hidden;
+            padding:12px 0;
+        }
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollLoop 20s linear infinite;
+            color:#fff;
+            font-size:18px;
+        }
+        @keyframes scrollLoop {
+            0% {transform: translateX(100%);}
+            100% {transform: translateX(-100%);}
+        }
+
+        /* 新闻主体容器 */
+        .news-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding:0 20px;
+        }
+        .news-item {
+            border:1px solid #eee;
+            border-radius:10px;
+            margin-bottom:30px;
+            overflow:hidden;
+        }
+        .news-header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 24px;
+            cursor:pointer;
+            background:#f8f8f8;
+        }
+        .news-title-date h3{
+            font-size:22px;
+            color:#222;
+            margin-bottom:6px;
+        }
+        .news-title-date p{
+            font-size:14px;
+            color:#666;
+        }
+        .arrow-icon{
+            font-size:26px;
+            transition: transform 0.8s ease;
+        }
+        .news-content-wrap{
+            max-height:0;
+            overflow:hidden;
+            transition: max-height 0.8s ease; /* 展开收起速度 0.8秒 */
+        }
+        .news-content{
+            padding:24px;
+            display:flex;
+            gap:30px;
+            align-items:flex-start;
+        }
+        .news-content img{
+            width:420px;
+            height:260px;
+            object-fit:cover;
+            border-radius:6px;
+        }
+        .news-text{
+            flex:1;
+            font-size:16px;
+            line-height:1.7;
+            color:#333;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<nav>
+    <div class="nav-logo">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
+    </div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+</nav>
+
+<!--循环滚动新闻标题栏-->
+<div class="marquee-wrap">
+    <div class="marquee-content">
+        ✦ New Product Launch: Biodegradable Bagasse Food Containers ✦ Attended Global Food Packaging Exhibition 2026 ✦ Custom Packaging Order from European Client ✦
+    </div>
+</div>
+
+<!--新闻列表区域-->
+<div class="news-container">
+    <!--新闻1-->
+    <div class="news-item">
+        <div class="news-header" onclick="toggleNews(this)">
+            <div class="news-title-date">
+                <h3>New Product Launch: Biodegradable Bagasse Food Containers</h3>
+                <p>Date: Aug 15, 2026</p>
+            </div>
+            <span class="arrow-icon">▼</span>
+        </div>
+        <div class="news-content-wrap">
+            <div class="news-content">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg" alt="news pic">
+                <div class="news-text">
+                    We are pleased to release our new upgraded bagasse bento box series. Made from sugarcane fiber, fully compostable and food-safe. It is microwave safe and leak-proof, ideal for takeaway restaurants, catering and supermarkets. We support custom logo printing and size customization for global wholesale buyers.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新闻2-->
+    <div class="news-item">
+        <div class="news-header" onclick="toggleNews(this)">
+            <div class="news-title-date">
+                <h3>Attended Global Food Packaging Exhibition 2026</h3>
+                <p>Date: Jul 28, 2026</p>
+            </div>
+            <span class="arrow-icon">▼</span>
+        </div>
+        <div class="news-content-wrap">
+            <div class="news-content">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner2.jpg" alt="news pic">
+                <div class="news-text">
+                    Harmony Pack joined the international packaging exhibition, met many overseas buyers. We displayed plastic sushi containers, sauce bottles, paper bags and degradable tableware. Many clients showed strong interest in our OEM & ODM service for food packaging.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新闻3-->
+    <div class="news-item">
+        <div class="news-header" onclick="toggleNews(this)">
+            <div class="news-title-date">
+                <h3>Custom Packaging Order from European Client</h3>
+                <p>Date: Jun 10, 2026</p>
+            </div>
+            <span class="arrow-icon">▼</span>
+        </div>
+        <div class="news-content-wrap">
+            <div class="news-content">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner3.jpg" alt="news pic">
+                <div class="news-text">
+                    We successfully finished a large custom packaging project for a food retailer in Europe. Including customized printed sushi trays and disposable sauce cups. Our one-stop service covers product design, mold making, sample testing and mass production.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleNews(el){
+    const contentWrap = el.nextElementSibling;
+    const arrow = el.querySelector(".arrow-icon");
+    if(contentWrap.style.maxHeight){
+        contentWrap.style.maxHeight = null;
+        arrow.textContent = "▼";
+    }else{
+        contentWrap.style.maxHeight = contentWrap.scrollHeight + "px";
+        arrow.textContent = "▲";
+    }
+}
+</script>
+</body>
+</html>
