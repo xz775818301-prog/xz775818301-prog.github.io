@@ -154,7 +154,6 @@
             border-radius:6px;
             background:#fff;
         }
-
         /* ========== 新版产品板块 Our Products【升级hover动效】 ========== */
         .product-section{
             padding:80px 40px;
@@ -209,7 +208,6 @@
             margin:18px 0;
             text-align:center;
         }
-
         /* ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== */
 .brand-section {
   position: relative;
@@ -343,15 +341,15 @@ h2 {
   color:#444;
   line-height:1.6;
 }
-/* Certifications 证书横向卡片 */
+/* Certifications 证书横向卡片【修改为5个，使用图片】 */
 .cert-grid {
   display:grid;
-  grid-template-columns: repeat(8,1fr);
-  gap:18px;
+  grid-template-columns: repeat(5,1fr);
+  gap:24px;
 }
 .cert-card {
   background:#fff;
-  padding:24px 12px;
+  padding:24px 16px;
   border-radius:14px;
   box-shadow:0 4px 14px rgba(0,102,51,0.07);
   text-align:center;
@@ -360,15 +358,17 @@ h2 {
 .cert-card:hover {
   transform:translateY(-5px);
 }
-.cert-logo {
-  font-size:28px;
-  font-weight:bold;
-  color:#006633;
-  margin-bottom:8px;
+.cert-card img{
+  width:100%;
+  max-width:140px;
+  height:auto;
+  object-fit:contain;
+  margin-bottom:12px;
 }
 .cert-card span {
-  font-size:15px;
+  font-size:16px;
   color:#333;
+  font-weight:500;
 }
 /* Testimonials客户评价 */
 .testimonial-grid {
@@ -426,7 +426,7 @@ h2 {
 /* 移动端适配 */
 @media(max-width:1024px){
   .four-card-grid{grid-template-columns: repeat(2,1fr);}
-  .cert-grid{grid-template-columns: repeat(4,1fr);}
+  .cert-grid{grid-template-columns: repeat(3,1fr);}
   .testimonial-grid{grid-template-columns: repeat(2,1fr);}
   .product-title{margin-left:40px;}
   .divider-line{margin-left:40px;width:calc(100% - 40px);}
@@ -517,7 +517,6 @@ h2 {
             <a href="#contact">Contact</a>
         </div>
     </nav>
-
     <!-- 新版Banner 淡入轮播带文字 -->
     <section class="banner-wrap">
         <div class="banner-mask"></div>
@@ -555,7 +554,6 @@ h2 {
             <span class="dot" data-index="2"></span>
         </div>
     </section>
-
     <!-- 新版产品板块 -->
     <section class="product-section" id="product">
         <h2 class="product-title">Our Products</h2>
@@ -587,7 +585,6 @@ h2 {
             </div>
         </div>
     </section>
-
 <!-- ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== -->
 <section class="brand-section">
   <!-- 全局流动几何背景 -->
@@ -600,7 +597,6 @@ h2 {
       <path d="M0,60 C320,120 480,0 960,60 C1440,120 1600,0 1920,60" stroke="#009E49" stroke-width="2" fill="none" opacity="0.25"/>
     </svg>
   </div>
-
   <div class="container">
     <!-- Why Choose Us -->
     <div class="block why-block">
@@ -651,8 +647,7 @@ h2 {
         </div>
       </div>
     </div>
-
-    <!-- Our Certifications -->
+    <!-- Our Certifications【修改为5个证书+图片】 -->
     <div class="block cert-block">
       <div class="text-center">
         <h2>Our Certifications</h2>
@@ -661,41 +656,28 @@ h2 {
       <div class="cert-scroll-wrap">
         <div class="cert-grid">
           <div class="cert-card">
-            <div class="cert-logo">FDA</div>
-            <span>FDA</span>
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/home.brcgs.png" alt="BRCGS">
+            <span>BRCGS</span>
           </div>
           <div class="cert-card">
-            <div class="cert-logo">BPI</div>
-            <span>BPI</span>
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/home.fsc.png" alt="FSC">
+            <span>FSC</span>
           </div>
           <div class="cert-card">
-            <div class="cert-logo">LFGB</div>
-            <span>LFGB</span>
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/home.iso9001.png" alt="ISO">
+            <span>ISO 9001</span>
           </div>
           <div class="cert-card">
-            <div class="cert-logo">ISO</div>
-            <span>ISO9001</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">✅</div>
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/home.foodsafety.png" alt="Food Safety">
             <span>Food Safety</span>
           </div>
           <div class="cert-card">
-            <div class="cert-logo">📄</div>
-            <span>Quality Control</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">🛡️</div>
-            <span>Factory Audit</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">✔</div>
-            <span>Global Export</span>
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/home.fda.png" alt="FDA">
+            <span>FDA</span>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Client Testimonials -->
     <div class="block testimonial-block">
       <div class="text-center">
@@ -730,7 +712,6 @@ h2 {
       </div>
     </div>
   </div>
-
   <!--底部波浪过渡，衔接Contact板块-->
   <div class="bottom-wave">
     <svg viewBox="0 0 1920 180" preserveAspectRatio="none">
@@ -738,7 +719,6 @@ h2 {
     </svg>
   </div>
 </section>
-
     <!-- Contact Us 联系板块 -->
     <section class="contact-section" id="contact">
         <div class="contact-wrap">
@@ -768,7 +748,6 @@ h2 {
             </div>
         </div>
     </section>
-
 <script>
 // 新版淡入Banner轮播
 const bannerItems = document.querySelectorAll('.banner-item');
@@ -777,7 +756,6 @@ const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
 let index = 0;
 const total = bannerItems.length;
-
 function updateSlide(){
     bannerItems.forEach(item=>item.classList.remove('active'));
     dots.forEach(dot=>dot.classList.remove('active'));
@@ -804,7 +782,6 @@ dots.forEach((dot,i)=>{
 let autoTimer = setInterval(nextSlide,5000);
 document.querySelector('.banner-wrap').addEventListener('mouseenter',()=>clearInterval(autoTimer));
 document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>autoTimer=setInterval(nextSlide,5000));
-
 // 滚动动画
 const sectionObserver = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
