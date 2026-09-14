@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmony Pack | About Us</title>
+    <title>Harmony Pack | About</title>
+    <!-- favicon 网页小图标 -->
+    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/havicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/havicon.png" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -11,7 +14,7 @@
             box-sizing: border-box;
             font-family: "Microsoft YaHei", sans-serif;
         }
-        /* ========== 导航栏（和首页保持完全一致） ========== */
+        /* ========== 导航栏 与首页保持一致 ========== */
         nav {
             height: 100px;
             background: #ffffff;
@@ -39,44 +42,63 @@
             color:#009E49;
             text-decoration:none;
         }
-        .nav-links a.active{
-            color:#000;
+        /* 移动端导航适配 */
+        @media(max-width:1024px){
+            nav{padding:0 20px;}
+            .nav-links{gap:20px;margin-right:20px;}
+        }
+        @media(max-width:768px){
+            nav{
+                height:auto;
+                flex-direction:column;
+                padding:15px;
+            }
+            .logo-box img{height:80px;}
+            .nav-links{
+                margin:10px 0;
+                gap:16px;
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+            .nav-links a{font-size:16px;}
         }
 
-        /* ========== About Us 主板块 ========== */
+        /* ========== About Us 主体板块 ========== */
         .about-section{
-            padding:90px 40px;
+            padding:90px 20px;
         }
         .about-container{
             max-width:1440px;
+            margin:0 auto;
         }
         .about-title{
             font-family:"Microsoft YaHei";
             font-size:40px;
-            font-weight:bold;
             color:#009E49;
+            font-weight:bold;
             margin-left:320px;
             margin-bottom:24px;
         }
         .text-line1{
             font-family:"Microsoft YaHei";
             font-size:20px;
-            font-weight:bold;
             color:#009E49;
+            font-weight:bold;
             margin-left:320px;
-            max-width:50%;
+            max-width:calc(50% - 320px);
             line-height:1.7;
-            margin-bottom:20px;
+            margin-bottom:22px;
         }
         .text-line2{
             font-family:"Microsoft YaHei";
             font-size:20px;
             color:#000000;
             margin-left:320px;
-            max-width:50%;
+            max-width:calc(50% - 320px);
             line-height:1.7;
-            margin-bottom:40px;
+            margin-bottom:32px;
         }
+        /* 按钮样式 */
         .about-btn{
             margin-left:320px;
             width:250px;
@@ -88,14 +110,42 @@
             font-size:24px;
             color:#000;
             cursor:pointer;
-            transition:0.5s all ease;
+            transition:0.5s ease;
         }
         .about-btn:hover{
             background:#000;
             color:#fff;
         }
 
-        /* ========== 底部Contact板块 和首页保持统一 ========== */
+        /* ========== 移动端适配 About文字区域 ========== */
+        @media(max-width:1400px){
+            .about-title, .text-line1, .text-line2, .about-btn{
+                margin-left:120px;
+                max-width:calc(70% - 120px);
+            }
+        }
+        @media(max-width:1024px){
+            .about-title, .text-line1, .text-line2, .about-btn{
+                margin-left:40px;
+                max-width:calc(100% - 40px);
+            }
+        }
+        @media(max-width:768px){
+            .about-section{padding:50px 16px;}
+            .about-title, .text-line1, .text-line2, .about-btn{
+                margin-left:0;
+                max-width:100%;
+            }
+            .about-title{font-size:32px;}
+            .text-line1,.text-line2{font-size:18px;}
+            .about-btn{
+                width:220px;
+                height:80px;
+                font-size:20px;
+            }
+        }
+
+        /* ========== Contact Us底部板块 和首页保持一致 ========== */
         .contact-section{
             background:#eeeeee;
             color:#ffffff;
@@ -150,20 +200,12 @@
             font-size:18px;
             cursor:pointer;
         }
-        /* 移动端适配 */
         @media(max-width:1024px){
-            .about-title,.text-line1,.text-line2,.about-btn{
-                margin-left:40px;
-                max-width:80%;
-            }
+            .contact-wrap{grid-template-columns: 1fr;gap:40px;}
         }
         @media(max-width:768px){
-            nav{padding:0 20px;}
-            .nav-links{gap:20px;margin-right:20px;}
-            .about-title,.text-line1,.text-line2,.about-btn{
-                margin-left:20px;
-                max-width:95%;
-            }
+            .contact-section{padding:40px 20px;}
+            .social-logos img{width:40px;height:40px;}
         }
     </style>
 </head>
@@ -175,24 +217,30 @@
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About</a>
+            <a href="#" style="color:#009E49; font-weight:bold;">About</a>
             <a href="products.html">Products</a>
             <a href="news.html">News</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- About Us内容 -->
+    <!-- About Us 主体内容 -->
     <section class="about-section">
-        <h2 class="about-title">About Us</h2>
-        <p class="text-line1">Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
-        <p class="text-line2">The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
-        <a href="products.html">
-            <button class="about-btn">View Products</button>
-        </a>
+        <div class="about-container">
+            <h2 class="about-title">About Us</h2>
+            <p class="text-line1">
+Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.
+            </p>
+            <p class="text-line2">
+The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.
+            </p>
+            <a href="products.html">
+                <button class="about-btn">View Products</button>
+            </a>
+        </div>
     </section>
 
-    <!-- Contact底部板块 -->
+    <!-- Contact Us 底部板块 -->
     <section class="contact-section" id="contact">
         <div class="contact-wrap">
             <div class="contact-info">
@@ -205,4 +253,21 @@
                 <div class="social-logos">
                     <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png">
                     <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/instagram.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/youtube.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/tik-tok.png">
+                </div>
+            </div>
+            <div>
+                <h3 class="form-title">Send Your Inquiry</h3>
+                <form action="https://formspree.io/f/mgaedrwj" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="You interested product & quantity" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
