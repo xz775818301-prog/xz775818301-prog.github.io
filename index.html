@@ -14,46 +14,33 @@
             color:#333;
         }
         /* ========== 导航栏 固定高度100px ========== */
-        nav {
-            background-color: #FFFFFF; /*导航背景白色*/
-            height:100px; /*导航栏固定高度100px*/
-            position: fixed;
-            width:100%;
-            top:0;
-            z-index:99;
-        }
-        .nav-container{
-            height:100%;
-            max-width:100%;
-            margin:0;
-            display:flex;
-            align-items:center; /*垂直居中logo和菜单文字*/
-            justify-content:space-between;
-            padding:0;
-        }
-        .logo{
-            margin-left:50px; /*logo距离屏幕最左侧50px*/
-        }
-        .logo img{
-            width:240px;
-            height:100px;
-            object-fit:contain;
-        }
-        .menu-group{
-            display:flex;
-            gap:2.5rem;
-            margin-right:100px; /*最右侧Contact距离屏幕右边缘100px*/
-        }
-        .menu-group a {
-            color:#006847; /*潘通350 网页色*/
-            text-decoration:none;
-            font-size:16px;
-            font-family:"Microsoft YaHei",sans-serif;
-            font-weight:bold;
-        }
-        .menu-group a:hover{
-            color:#009E49;
-        }
+nav {
+    height: 100px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+.nav-logo img {
+    width: 240px;
+    height: 100px;
+    object-fit: contain;
+}
+.nav-menu {
+    display: flex;
+    gap: 48px;
+    margin-right: 100px;
+}
+.nav-menu a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #006633;
+    text-decoration: none;
+}
         /* ========== Banner轮播 固定高度800px ========== */
         .banner-wrap{
             margin-top:100px; /*导航高度100px*/
@@ -146,17 +133,15 @@
 <body>
 <!-- 导航 左侧Logo + 右侧菜单 -->
 <nav>
-    <div class="nav-container">
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Company Logo">
-        </div>
-        <div class="menu-group">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="products.html">Products</a>
-            <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
-        </div>
+    <div class="nav-logo">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
+    </div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
     </div>
 </nav>
 
