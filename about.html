@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Pack | About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        /* 导航栏 复用首页样式，高度100px，白色背景，字体潘通350 */
+        nav {
+            height: 100px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-logo img {
+            width: 240px;
+            height: 100px;
+            object-fit: contain;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 48px;
+            margin-right: 100px;
+        }
+        .nav-menu a {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006633; /* 潘通350 */
+            text-decoration: none;
+        }
+        /* About主体浅绿色容器 */
+        .about-green-wrap {
+            background-color: #009E49;
+            margin: 40px 50px;
+            padding: 60px 0;
+        }
+        .about-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            text-shadow: 1px 1px 3px #000000;
+            margin-bottom: 40px;
+        }
+        .about-text-block {
+            width: calc(100% / 3);
+            margin: 0 auto;
+        }
+        .about-text-block p {
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000;
+            text-align: justify; /* 两端对齐 */
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .about-img-wrap {
+            text-align: center;
+            margin-top: 60px;
+        }
+        .about-img-wrap img {
+            width: 1020px;
+            height: 500px;
+            object-fit: cover;
+        }
+        /* 标语+logo区域 */
+        .slogan-area {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .slogan {
+            font-size: 26px;
+            font-weight: bold;
+            font-style: italic;
+            color: #000;
+            margin-bottom:30px;
+        }
+        .slogan-logo img {
+            width:240px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav>
+    <div class="nav-logo">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
+    </div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="news.html">News</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+</nav>
 
+<!-- 浅绿色包裹区域 -->
+<div class="about-green-wrap">
+    <h2 class="about-title">About Us</h2>
+    <div class="about-text-block">
+        <p>Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
+        <p>The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
+    </div>
+    <div class="about-img-wrap">
+        <!-- 👉这里替换成你的公司图片链接，1020*500 -->
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/about%20company.png" alt="Company">
+    </div>
+</div>
+
+<!-- 标语与logo -->
+<div class="slogan-area">
+    <p class="slogan">Quality, Professionalism, Safety, Warmth</p>
+    <div class="slogan-logo">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="logo">
+    </div>
+</div>
+
+</body>
+</html>
