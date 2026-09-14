@@ -4,63 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmony Pack | Home</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.png" type="image/png">
+    <!-- favicon 图标 -->
+    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
         }
-        body {
-            color:#333;
-            margin: 0;
-            padding: 0;
+        /* ========== 导航栏样式 ========== */
+        nav {
+            height: 100px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px 0 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top:0;
+            z-index:999;
         }
-        /* ========== 导航栏 固定高度100px ========== */
-nav {
-    height: 100px;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-.nav-logo img {
-    width: 240px;
-    height: 100px;
-    object-fit: contain;
-}
-.nav-menu {
-    display: flex;
-    gap: 48px;
-    margin-right: 100px;
-}
-.nav-menu a {
-    font-size: 20px;
-    font-weight: bold;
-    color: #006633;
-    text-decoration: none;
-}
-        /* ========== Banner轮播 固定高度800px ========== */
+        .logo-box img{
+            height:100px;
+        }
+        .nav-links{
+            display:flex;
+            gap:42px;
+            margin-right:100px;
+        }
+        .nav-links a{
+            font-family:"Microsoft YaHei",sans-serif;
+            font-weight:bold;
+            font-size:18px;
+            color:#009E49;
+            text-decoration:none;
+        }
+        /* ========== Banner轮播 ========== */
         .banner-wrap{
-            margin-top:0;
-            padding-top:0;
             width:100%;
-            height:800px;
+            height:50vh;
             overflow:hidden;
             position:relative;
         }
-        .banner-slider{
-            width:300%;
+        .banner-slide{
+            width:100%;
             height:100%;
             display:flex;
-            transition: all 0.6s ease-in-out;
         }
         .banner-item{
-            width:100%;
+            min-width:100%;
             height:100%;
         }
         .banner-item img{
@@ -68,395 +63,77 @@ nav {
             height:100%;
             object-fit:cover;
         }
-        /* 左右箭头按钮 */
         .banner-btn{
             position:absolute;
             top:50%;
             transform:translateY(-50%);
             width:44px;
             height:44px;
-            background:rgba(255,255,255,0.6);
+            background:rgba(255,255,255,0.65);
             border:none;
-            font-size:24px;
-            cursor:pointer;
             border-radius:50%;
+            font-size:22px;
+            cursor:pointer;
+            z-index:10;
         }
-        .prev{left:20px;}
-        .next{right:20px;}
-        .banner-btn:hover{
+        .prev{left:24px;}
+        .next{right:24px;}
+        .dot-group{
+            position:absolute;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            display:flex;
+            gap:12px;
+        }
+        .dot{
+            width:12px;
+            height:12px;
+            border-radius:50%;
             background:#fff;
+            opacity:0.5;
+        }
+        .dot.active{opacity:1;}
+
+        /* ========== 产品板块 ========== */
+        .product-section{
+            padding:80px 40px;
+        }
+        .product-title{
+            text-align:left;
+            margin-left:320px;
+            font-family:"Microsoft YaHei";
+            font-size:40px;
+            color:#009E49;
+            font-weight:bold;
+        }
+        .divider-line{
+            width:calc(100% - 320px);
+            margin:10px 0 50px 320px;
+            height:2px;
+            background:#000000;
+        }
+        .product-grid{
+            max-width:1440px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:36px;
+        }
+        .product-card h4{
+            font-family:"Microsoft YaHei";
+            font-size:20px;
+            color:#009E49;
+            text-shadow:0.5px 0.5px 2px #000000;
+            margin:14px 0;
+            text-align:center;
+        }
+        .product-card img{
+            width:100%;
+            border-radius:8px;
         }
 
-        /* ========== Our Products 产品板块【已缩小：图片400×266，左右留边约300px】 ========== */
-.product-section{
-    width:100%;
-    padding:60px 0;
-    background:#f8f8f8;
-}
-.container{
-    max-width:1920px;
-    margin:0 auto;
-    padding:0 300px;
-}
-.section-title{
-    text-align:center;
-    font-size:36px;
-    color:#333;
-    margin:0 0 12px;
-    font-family:"Microsoft YaHei",sans-serif;
-}
-.black-line{
-    width:120px;
-    height:2px;
-    background:#000000;
-    margin:0 auto 40px;
-}
-.product-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:30px 24px;
-}
-.product-item{
-    text-align:center;
-}
-.product-name{
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:20px;
-    color:#009E49; /*潘通359*/
-    text-shadow:1px 1px 2px #000000;
-    margin-bottom:16px;
-}
-.product-img-box img{
-    width:400px;
-    height:266px;
-    object-fit:cover;
-}
-
-    </style>
-</head>
-<body>
-<!-- 导航 左侧Logo + 右侧菜单 -->
-<nav>
-    <div class="nav-logo">
-        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
-    </div>
-    <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="products.html">Products</a>
-        <a href="news.html">News</a>
-        <a href="contact.html">Contact</a>
-    </div>
-</nav>
-
-<!-- Banner轮播区域 -->
-<div class="banner-wrap">
-    <div class="banner-slider" id="slider">
-        <div class="banner-item">
-            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg" alt="Banner 1">
-        </div>
-        <div class="banner-item">
-            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner2.jpg" alt="Banner 2">
-        </div>
-        <div class="banner-item">
-            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner3.jpg" alt="Banner 3">
-        </div>
-    </div>
-    <button class="banner-btn prev" onclick="prevSlide()">&lt;</button>
-    <button class="banner-btn next" onclick="nextSlide()">&gt;</button>
-</div>
-
-<script>
-// 轮播JS代码
-const slider = document.getElementById('slider');
-let index = 0;
-const total = 3;
-
-function updateSlide(){
-    slider.style.transform = `translateX(-${index * 100 / total}%)`
-}
-function nextSlide(){
-    index = (index +1) % total;
-    updateSlide();
-}
-function prevSlide(){
-    index = (index -1 + total) % total;
-    updateSlide();
-}
-// 自动轮播，5秒切换一张
-let autoPlay = setInterval(nextSlide,5000);
-// 鼠标悬停停止自动播放，移开继续
-document.querySelector('.banner-wrap').addEventListener('mouseenter',()=>{
-    clearInterval(autoPlay);
-})
-document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
-    autoPlay = setInterval(nextSlide,5000);
-})
-</script>
-
-<!-- ========== Our Products 产品板块 6张图片链接已全部填入 ========== -->
-<section class="product-section">
-    <div class="container">
-        <h2 class="section-title">Our Products</h2>
-        <div class="black-line"></div>
-        <div class="product-grid">
-            <!-- 第1行 -->
-            <div class="product-item">
-                <h3 class="product-name">Plastic Food Container</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="Plastic Sushi Container">
-                </div>
-            </div>
-            <div class="product-item">
-                <h3 class="product-name">Paper Food Container</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg" alt="Paper Sushi Container">
-                </div>
-            </div>
-            <div class="product-item">
-                <h3 class="product-name">Bagasse Bento Box</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg" alt="Bagasse Bento Box">
-                </div>
-            </div>
-            <!-- 第2行 -->
-            <div class="product-item">
-                <h3 class="product-name">Party Tray</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%204.jpg" alt="Party Tray">
-                </div>
-            </div>
-            <div class="product-item">
-                <h3 class="product-name">Sauce Bottle</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%205.jpg" alt="Sauce Bottle">
-                </div>
-            </div>
-            <div class="product-item">
-                <h3 class="product-name">Paper Bag</h3>
-                <div class="product-img-box">
-                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%206.jpg" alt="Paper Bag">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== -->
-<section class="brand-section">
-  <!-- 全局流动几何背景 -->
-  <div class="geo-bg">
-    <div class="geo-circle big"></div>
-    <div class="geo-circle small-1"></div>
-    <div class="geo-circle small-2"></div>
-    <div class="geo-dot-pattern"></div>
-    <svg class="wave-line" viewBox="0 0 1920 120" preserveAspectRatio="none">
-      <path d="M0,60 C320,120 480,0 960,60 C1440,120 1600,0 1920,60" stroke="#009E49" stroke-width="2" fill="none" opacity="0.25"/>
-    </svg>
-  </div>
-
-  <div class="container">
-    <!-- Why Choose Us -->
-    <div class="block why-block">
-      <div class="text-left">
-        <h2>Why Choose Us</h2>
-        <p class="sub-heading">Reliable food packaging for global partners</p>
-        <div class="short-line"></div>
-      </div>
-      <div class="four-card-grid">
-        <div class="feature-card">
-          <div class="icon-circle">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-            </svg>
-          </div>
-          <h3>Food Grade Material</h3>
-          <p>Safe materials with test report support.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-circle">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
-              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-              <path d="M9 12l2 2 4-4"></path>
-            </svg>
-          </div>
-          <h3>OEM & ODM Service</h3>
-          <p>Custom size, printing and mold development.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-circle">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <h3>20+ Years Experience</h3>
-          <p>Professional manufacturing and strict QC.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon-circle">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M2 12h20"></path>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-          </div>
-          <h3>Global Delivery</h3>
-          <p>Stable supply chain and worldwide shipping.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Our Certifications -->
-    <div class="block cert-block">
-      <div class="text-center">
-        <h2>Our Certifications</h2>
-        <p class="sub-heading">Authorized standards for food contact safety</p>
-      </div>
-      <div class="cert-scroll-wrap">
-        <div class="cert-grid">
-          <div class="cert-card">
-            <div class="cert-logo">FDA</div>
-            <span>FDA</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">BPI</div>
-            <span>BPI</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">LFGB</div>
-            <span>LFGB</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">ISO</div>
-            <span>ISO9001</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">✅</div>
-            <span>Food Safety</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">📄</div>
-            <span>Quality Control</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">🛡️</div>
-            <span>Factory Audit</span>
-          </div>
-          <div class="cert-card">
-            <div class="cert-logo">✔</div>
-            <span>Global Export</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Client Testimonials -->
-    <div class="block testimonial-block">
-      <div class="text-center">
-        <h2>Client Testimonials</h2>
-        <p class="sub-heading">Feedback from global buyers</p>
-      </div>
-      <div class="testimonial-grid">
-        <div class="testi-card">
-          <div class="quote-icon">①</div>
-          <p>Stable quality and fast response. A reliable supplier for our catering packaging.</p>
-          <div class="testi-footer">
-            <span>Mark, USA</span>
-            <span>#006633</span>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="quote-icon">②</div>
-          <p>The custom printing service saved our brand presentation a lot of time.</p>
-          <div class="testi-footer">
-            <span>Sophie, UK</span>
-            <span>#009E49</span>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="quote-icon">③</div>
-          <p>Professional factory, good communication and on-time delivery.</p>
-          <div class="testi-footer">
-            <span>Leo, Australia</span>
-            <span>#006633</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--底部波浪过渡，衔接Contact板块-->
-  <div class="bottom-wave">
-    <svg viewBox="0 0 1920 180" preserveAspectRatio="none">
-      <path fill="#006633" d="M0,90 C400,180 600,0 960,90 C1320,180 1520,0 1920,90 L1920,180 L0,180 Z"></path>
-    </svg>
-  </div>
-</section>
-
-
-<!-- Contact联系表单，放在View Products按钮后面 -->
-<section class="contact-form-section">
-    <div class="form-container">
-        <h3 class="form-title">Send Your Inquiry</h3>
-        <form action="https://formspree.io/f/mgaedrwj" method="POST" class="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Products you are interested in & Quantity" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-</section>
-<style>
-.contact-form-section{
-    width:100%;
-    padding:80px 0;
-    background:#f8f8f8;
-}
-.form-container{
-    max-width:1920px;
-    margin:0 auto;
-    padding-left:320px;
-}
-.form-title{
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:40px;
-    font-weight:bold;
-    color:#009E49;
-    margin-bottom:30px;
-}
-.contact-form{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    max-width:600px;
-}
-.contact-form input,.contact-form textarea{
-    padding:16px;
-    font-size:18px;
-    font-family:"Microsoft YaHei",sans-serif;
-    border:2px solid #ccc;
-    border-radius:8px;
-}
-.contact-form textarea{
-    min-height:160px;
-}
-.contact-form button{
-    width:250px;
-    height:100px;
-    background:#fff;
-    border:3px solid #000;
-    border-radius:20px;
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:24px;
-    color:#000;
-    transition:all 0.5s ease;
-    cursor:pointer;
-}
-.contact-form button:hover{
-    background:#000;
-    color:#fff;
-}
-    /* ========== 板块配套CSS，放到index.html的<style>标签里 ========== */
+        /* ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== */
 .brand-section {
   position: relative;
   padding: 120px 0;
@@ -472,6 +149,13 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
 }
 .block {
   margin-bottom: 110px;
+  opacity:0;
+  transform:translateY(40px);
+  transition: 0.7s ease;
+}
+.block.show {
+  opacity:1;
+  transform:translateY(0);
 }
 .text-left {
   text-align: left;
@@ -662,135 +346,358 @@ h2 {
   width:100%;
   height:100%;
 }
-/* 滚动动画 */
-.block {
-  opacity:0;
-  transform:translateY(40px);
-  transition: 0.7s ease;
-}
-.block.show {
-  opacity:1;
-  transform:translateY(0);
-}
 /* 移动端适配 */
 @media(max-width:1024px){
   .four-card-grid{grid-template-columns: repeat(2,1fr);}
   .cert-grid{grid-template-columns: repeat(4,1fr);}
   .testimonial-grid{grid-template-columns: repeat(2,1fr);}
+  .product-title{margin-left:40px;}
+  .divider-line{margin-left:40px;width:calc(100% - 40px);}
 }
 @media(max-width:768px){
   .four-card-grid{grid-template-columns: 1fr;}
   .cert-grid{grid-template-columns: repeat(2,1fr);}
   .testimonial-grid{grid-template-columns: 1fr;}
   h2{font-size:32px;}
+  nav{padding:0 20px;}
+  .nav-links{gap:20px;margin-right:20px;}
+  .product-title{margin-left:20px;}
+  .divider-line{margin-left:20px;width:calc(100% - 20px);}
 }
-</style>
-<!-- ========== Contact Us 底部联系板块 ========== -->
-<section class="contact-footer-section">
-    <div class="contact-container">
-        <h2 class="contact-title">Contact Us</h2>
-        <div class="contact-info">
-            <p class="company-name">Jiaxing Harmony Packaging Products Co., Ltd.</p>
-            <p class="contact-line">
-                <span class="icon">📍</span>
-                Fl.1, Bldg. 2, 168 Rongda Rd., Wanghai., Haiyan, Jiaxing, Zhejiang, China.
-            </p>
-            <p class="contact-line">
-                <span class="icon">💬</span>
-                +86 17260367072
-            </p>
-            <p class="contact-line">
-                <span class="icon">📞</span>
-                +86 17260367072
-            </p>
-            <p class="contact-line">
-                <span class="icon">👨‍💼</span>
-                Kelvin（sales)
-            </p>
-            <p class="contact-line">
-                <span class="icon">✉️</span>
-                kelvin@hamopak.com
-            </p>
+        /* ========== Contact Us 底部板块 ========== */
+        .contact-section{
+            background:#eeeeee;
+            color:#ffffff;
+            padding:70px 40px;
+        }
+        .contact-wrap{
+            max-width:1440px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:60px;
+        }
+        .contact-info h3{
+            font-size:24px;
+            margin-bottom:22px;
+            color:#222;
+        }
+        .contact-info p{
+            font-size:17px;
+            color:#222;
+            margin-bottom:14px;
+            line-height:1.6;
+        }
+        .social-logos{
+            margin-top:30px;
+            display:flex;
+            gap:20px;
+        }
+        .social-logos img{
+            width:48px;
+            height:48px;
+        }
+        .form-title{
+            color:#222;
+            font-size:26px;
+            margin-bottom:24px;
+        }
+        .contact-form input, .contact-form textarea{
+            width:100%;
+            padding:14px;
+            margin-bottom:16px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+        }
+        .contact-form button{
+            padding:14px 32px;
+            background:#009E49;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo-box">
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
         </div>
-        <!-- 社交媒体纯白Logo区域 -->
-<div class="social-logos">
-    <img class="social-icon" src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png" alt="Facebook">
-    <img class="social-icon" src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png" alt="LinkedIn">
-    <img class="social-icon" src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/instagram.png" alt="Instagram">
-    <img class="social-icon" src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/youtube.png" alt="YouTube">
-    <img class="social-icon" src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/tik-tok.png" alt="Tiktok">
-</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="news.html">News</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
+    <!-- Banner轮播 -->
+    <section class="banner-wrap">
+        <div class="banner-slide">
+            <div class="banner-item">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg">
+            </div>
+            <div class="banner-item">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner2.jpg">
+            </div>
+            <div class="banner-item">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner3.jpg">
+            </div>
+        </div>
+        <button class="banner-btn prev">&lt;</button>
+        <button class="banner-btn next">&gt;</button>
+        <div class="dot-group">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- 产品板块 -->
+    <section class="product-section">
+        <h2 class="product-title">Our Products</h2>
+        <div class="divider-line"></div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg">
+                <h4>Plastic Food Container</h4>
+            </div>
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg">
+                <h4>Paper Food Container</h4>
+            </div>
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg">
+                <h4>Bagasse Bento Box</h4>
+            </div>
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%204.jpg">
+                <h4>Party Tray</h4>
+            </div>
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%205.jpg">
+                <h4>Sauce Bottle</h4>
+            </div>
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%206.jpg">
+                <h4>Paper Bag</h4>
+            </div>
+        </div>
+    </section>
+
+<!-- ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== -->
+<section class="brand-section">
+  <!-- 全局流动几何背景 -->
+  <div class="geo-bg">
+    <div class="geo-circle big"></div>
+    <div class="geo-circle small-1"></div>
+    <div class="geo-circle small-2"></div>
+    <div class="geo-dot-pattern"></div>
+    <svg class="wave-line" viewBox="0 0 1920 120" preserveAspectRatio="none">
+      <path d="M0,60 C320,120 480,0 960,60 C1440,120 1600,0 1920,60" stroke="#009E49" stroke-width="2" fill="none" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <!-- Why Choose Us -->
+    <div class="block why-block">
+      <div class="text-left">
+        <h2>Why Choose Us</h2>
+        <p class="sub-heading">Reliable food packaging for global partners</p>
+        <div class="short-line"></div>
+      </div>
+      <div class="four-card-grid">
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <h3>Food Grade Material</h3>
+          <p>Safe materials with test report support.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3>OEM & ODM Service</h3>
+          <p>Custom size, printing and mold development.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>20+ Years Experience</h3>
+          <p>Professional manufacturing and strict QC.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3>Global Delivery</h3>
+          <p>Stable supply chain and worldwide shipping.</p>
+        </div>
+      </div>
     </div>
-    <!-- 版权信息，页面右下角 -->
-    <div class="copyright">Copyright © 2026 Harmony Pack</div>
+
+    <!-- Our Certifications -->
+    <div class="block cert-block">
+      <div class="text-center">
+        <h2>Our Certifications</h2>
+        <p class="sub-heading">Authorized standards for food contact safety</p>
+      </div>
+      <div class="cert-scroll-wrap">
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-logo">FDA</div>
+            <span>FDA</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">BPI</div>
+            <span>BPI</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">LFGB</div>
+            <span>LFGB</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">ISO</div>
+            <span>ISO9001</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">✅</div>
+            <span>Food Safety</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">📄</div>
+            <span>Quality Control</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">🛡️</div>
+            <span>Factory Audit</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">✔</div>
+            <span>Global Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Testimonials -->
+    <div class="block testimonial-block">
+      <div class="text-center">
+        <h2>Client Testimonials</h2>
+        <p class="sub-heading">Feedback from global buyers</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testi-card">
+          <div class="quote-icon">①</div>
+          <p>Stable quality and fast response. A reliable supplier for our catering packaging.</p>
+          <div class="testi-footer">
+            <span>Mark, USA</span>
+            <span>#006633</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-icon">②</div>
+          <p>The custom printing service saved our brand presentation a lot of time.</p>
+          <div class="testi-footer">
+            <span>Sophie, UK</span>
+            <span>#009E49</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-icon">③</div>
+          <p>Professional factory, good communication and on-time delivery.</p>
+          <div class="testi-footer">
+            <span>Leo, Australia</span>
+            <span>#006633</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--底部波浪过渡，衔接Contact板块-->
+  <div class="bottom-wave">
+    <svg viewBox="0 0 1920 180" preserveAspectRatio="none">
+      <path fill="#006633" d="M0,90 C400,180 600,0 960,90 C1320,180 1520,0 1920,90 L1920,180 L0,180 Z"></path>
+    </svg>
+  </div>
 </section>
 
-<style>
-.contact-footer-section{
-    width:100%;
-    padding:80px 0;
-    background:#666666; /*浅灰背景，文字白色*/
-    color:#ffffff;
-    position:relative;
-}
-.contact-container{
-    max-width:1920px;
-    margin:0 auto;
-    padding-left:320px;
-}
-.contact-title{
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:40px;
-    font-weight:bold;
-    margin-bottom:30px;
-}
-.company-name{
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:26px;
-    margin-bottom:24px;
-}
-.contact-line{
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:18px;
-    margin-bottom:16px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-.icon{
-    font-size:22px;
-}
-/*社媒logo区域*/
-.social-logos{
-    display:flex;
-    gap:24px;
-    margin-top:40px;
-    background: transparent; /* 透明背景 */
-    background-color: transparent;
-}
-.social-icon{
-    width:48px;
-    height:48px;
-    background:transparent;
-    color:#666;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:6px;
-    font-size:14px;
-}
-/*版权文字，右下角定位*/
-.copyright{
-    position:absolute;
-    right:320px;
-    bottom:30px;
-    font-family:"Microsoft YaHei",sans-serif;
-    font-size:16px;
-}
-</style>
-<!-- JS：滚动渐入动画，放在index.html底部</body>前 -->
+    <!-- Contact Us 联系板块 -->
+    <section class="contact-section" id="contact">
+        <div class="contact-wrap">
+            <div class="contact-info">
+                <h3>Jiaxing Harmony Packaging Products Co., Ltd.</h3>
+                <p>📍 Fl.1, Bldg. 2, 168 Rongda Rd., Wanghai., Haiyan, Jiaxing, Zhejiang, China.</p>
+                <p>Whatsapp: +86 17260367072</p>
+                <p>☎ +86 17260367072</p>
+                <p>👤 Kelvin（sales)</p>
+                <p>📩 kelvin@hamopak.com</p>
+                <div class="social-logos">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/instagram.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/youtube.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/tik-tok.png">
+                </div>
+            </div>
+            <div>
+                <h3 class="form-title">Send Your Inquiry</h3>
+                <form action="https://formspree.io/f/mgaedrwj" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="You interested product & quantity" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
 <script>
+// Banner轮播JS
+const slideWrap = document.querySelector('.banner-slide');
+const slides = document.querySelectorAll('.banner-item');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let index = 0;
+const total = slides.length;
+function updateSlide(){
+    slideWrap.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot,i)=>dot.classList.toggle('active',i===index));
+}
+function nextSlide(){
+    index = (index + 1) % total;
+    updateSlide();
+}
+nextBtn.onclick = nextSlide;
+prevBtn.onclick = ()=>{
+    index = (index -1 + total) % total;
+    updateSlide();
+}
+let autoPlay = setInterval(nextSlide,4000);
+slideWrap.addEventListener('mouseenter',()=>clearInterval(autoPlay));
+slideWrap.addEventListener('mouseleave',()=>autoPlay = setInterval(nextSlide,4000));
+
+// 新板块滚动动画
 const sectionObserver = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
@@ -803,6 +710,5 @@ const sectionObserver = new IntersectionObserver((entries)=>{
 const brandSection = document.querySelector('.brand-section');
 if(brandSection) sectionObserver.observe(brandSection);
 </script>
-
 </body>
 </html>
