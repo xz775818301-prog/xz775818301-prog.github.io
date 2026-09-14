@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmony Pack | About Us</title>
+
+    <!-- favicon 图标 -->
     <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
+
     <style>
         *{
             margin:0;
@@ -13,7 +16,14 @@
             box-sizing:border-box;
             font-family:"Microsoft YaHei",sans-serif;
         }
-        /* 导航栏 沿用首页一致样式 */
+
+        :root{
+            --green:#009E49;
+            --darkgreen:#006633;
+            --light-green:#f7fbf8;
+        }
+
+        /* 导航栏 */
         nav{
             height:100px;
             background:#ffffff;
@@ -21,184 +31,657 @@
             align-items:center;
             justify-content:space-between;
             padding:0 50px 0 50px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
             position:sticky;
             top:0;
             z-index:999;
         }
+
         .logo img{
             height:100px;
         }
-        .nav-links{
+
+        .nav-menu{
             display:flex;
-            gap:45px;
+            gap:48px;
             margin-right:100px;
         }
-        .nav-links a{
+
+        .nav-menu a{
             font-size:20px;
+            font-weight:bold;
             color:#009E49;
             text-decoration:none;
-            font-weight:bold;
+            transition:0.3s;
         }
-        /* About页面Banner 【已删除绿色遮罩、移动线条，保留右侧点阵】 */
+
+        .nav-menu a.active{
+            color:var(--darkgreen);
+        }
+
+        .nav-menu a:hover{
+            color:var(--darkgreen);
+        }
+
+        /* 页面底层点阵背景 */
+        body{
+            background-color:#fff;
+            background-image: radial-gradient(var(--green) 1px, transparent 1px);
+            background-size:28px 28px;
+            background-attachment:fixed;
+        }
+
+        /* 顶部Banner */
         .about-banner{
+            position:relative;
             width:100%;
-            height:600px;
+            height:60vh;
+            min-height:450px;
+            overflow:hidden;
             display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .about-banner img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        /* 绿色渐变遮罩，还原之前效果 */
+        .banner-overlay{
+            position:absolute;
+            inset:0;
+            background:linear-gradient(90deg,rgba(0,158,73,0.4),rgba(0,102,51,0.25));
+            z-index:2;
+        }
+
+        /* Banner流动几何线条，还原之前效果 */
+        .banner-geo{
+            position:absolute;
+            inset:0;
+            overflow:hidden;
+            z-index:3;
+        }
+
+        .line-ani{
+            position:absolute;
+            height:2px;
+            background:rgba(255,255,255,0.45);
+            animation:lineMove 7s linear infinite;
+        }
+
+        .line-1{
+            width:30%;
+            top:25%;
+            left:-30%;
+        }
+
+        .line-2{
+            width:40%;
+            top:65%;
+            right:-40%;
+        }
+
+        .line-3{
+            width:25%;
+            top:45%;
+            left:-25%;
+        }
+
+        @keyframes lineMove{
+            0%{
+                transform:translateX(0) rotate(12deg);
+                opacity:0;
+            }
+            20%{
+                opacity:1;
+            }
+            80%{
+                opacity:1;
+            }
+            100%{
+                transform:translateX(1400px) rotate(12deg);
+                opacity:0;
+            }
+        }
+
+        .banner-text{
+            position:relative;
+            z-index:4;
+            text-align:center;
+            color:#fff;
+        }
+
+        .banner-text h1{
+            font-size:54px;
+            margin-bottom:16px;
+        }
+
+        .banner-text p{
+            font-size:22px;
+            max-width:700px;
+        }
+
+        .container{
+            max-width:1400px;
+            margin:0 auto;
+            padding:0 40px;
+            position:relative;
+            z-index:2;
+        }
+
+        section{
+            position:relative;
+            padding:90px 0;
+            overflow:hidden;
+        }
+
+        .section-title{
+            font-size:40px;
+            color:var(--green);
+            font-weight:bold;
+            margin-bottom:14px;
+        }
+
+        .section-subtitle{
+            font-size:20px;
+            color:#555;
+            margin-bottom:50px;
+        }
+
+        /* 半悬浮几何装饰 */
+        .floating-geo{
+            position:absolute;
+            z-index:1;
+            opacity:0.14;
+        }
+
+        .geo-circle1{
+            width:320px;
+            height:320px;
+            border-radius:50%;
+            border:3px solid var(--green);
+            top:100px;
+            right:40px;
+            animation:float 8s ease-in-out infinite;
+        }
+
+        .geo-circle2{
+            width:220px;
+            height:220px;
+            border-radius:50%;
+            background:var(--green);
+            bottom:60px;
+            left:30px;
+            animation:float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-24px);
+            }
+        }
+
+        /* Who We Are */
+        .who-we-are{
+            background:#ffffffcc;
+        }
+
+        .two-col{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:50px;
+            align-items:center;
+        }
+
+        .text-col p{
+            font-size:20px;
+            color:#333;
+            line-height:1.8;
+            margin-bottom:20px;
+        }
+
+        .img-col img{
+            width:100%;
+            border-radius:16px;
+            box-shadow:0 10px 30px rgba(0,110,50,0.15);
+        }
+
+        /* Our Strength 优势卡片 */
+        .our-strength{
+            background:var(--light-green);
+        }
+
+        .strength-grid{
+            display:grid;
+            grid-template-columns: repeat(4,1fr);
+            gap:26px;
+        }
+
+        .str-card{
+            background:#fff;
+            padding:32px 22px;
+            border-radius:14px;
+            box-shadow:0 4px 14px rgba(0,110,50,0.09);
+            transition:all 0.5s ease;
+            opacity:0;
+            transform:translateY(30px);
+        }
+
+        .str-card.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        .str-card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 14px 28px rgba(0,110,50,0.18);
+        }
+
+        .str-card h3{
+            color:var(--darkgreen);
+            font-size:22px;
+            margin-bottom:12px;
+        }
+
+        .str-card p{
+            font-size:16px;
+            color:#555;
+            line-height:1.6;
+        }
+
+        /* 时间线 Timeline */
+        .timeline-section{
+            background:#ffffffcc;
+        }
+
+        .timeline-wrap{
+            max-width:1000px;
+            margin:0 auto;
             position:relative;
         }
-        .banner-left{
-            width:70%;
-            background:url("这里放你的about页面寿司大图链接") center center / cover no-repeat;
-            /* 移除了绿色半透明蒙版，图片原色展示 */
+
+        .timeline-wrap::before{
+            content:"";
+            position:absolute;
+            left:50%;
+            top:0;
+            bottom:0;
+            width:4px;
+            background:linear-gradient(var(--green),var(--darkgreen));
+            transform:translateX(-50%);
         }
-        .banner-right{
-            width:30%;
-            background:#e8f5f0;
-            background-image: radial-gradient(#009E49 1px, transparent 1px);
-            background-size:18px 18px;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            padding:0 40px;
+
+        .timeline-item{
+            width:50%;
+            margin:40px 0;
+            position:relative;
+            opacity:0;
+            transform:translateX(-30px);
+            transition:0.7s ease;
         }
-        .banner-right h1{
-            font-size:72px;
-            color:#ffffff;
-            margin-bottom:20px;
+
+        .timeline-item.show{
+            opacity:1;
+            transform:translateX(0);
         }
-        .banner-right p{
-            font-size:24px;
-            color:#ffffff;
-            line-height:1.6;
-            text-align:center;
+
+        .timeline-item.left{
+            padding-right:45px;
+            left:0;
+            text-align:right;
         }
-        /* About正文区域 */
-        .about-content{
-            padding:80px 320px;
+
+        .timeline-item.right{
+            left:50%;
+            padding-left:45px;
+            transform:translateX(30px);
         }
-        .about-content h2{
-            font-size:40px;
-            color:#009E49;
-            font-weight:bold;
-            margin-bottom:24px;
+
+        .timeline-dot{
+            width:22px;
+            height:22px;
+            background:var(--green);
+            border-radius:50%;
+            position:absolute;
+            top:12px;
+            z-index:2;
         }
-        .about-content .p1{
-            font-size:20px;
-            color:#009E49;
-            font-weight:bold;
-            max-width:50%;
-            line-height:1.7;
-            margin-bottom:20px;
+
+        .timeline-item.left .timeline-dot{
+            right:-11px;
         }
-        .about-content .p2{
-            font-size:20px;
-            color:#000000;
-            font-weight:normal;
-            max-width:50%;
-            line-height:1.7;
-            margin-bottom:40px;
+
+        .timeline-item.right .timeline-dot{
+            left:-11px;
         }
-        .about-btn{
-            width:250px;
-            height:100px;
-            border:3px solid #000;
+
+        .timeline-card{
             background:#fff;
-            border-radius:20px;
-            font-size:24px;
-            color:#000;
-            font-family:"Microsoft YaHei";
-            transition:0.5s all ease;
-            cursor:pointer;
+            padding:24px;
+            border-radius:12px;
+            box-shadow:0 4px 16px rgba(0,110,50,0.1);
         }
-        .about-btn:hover{
-            background:#000;
-            color:#fff;
+
+        .timeline-card h4{
+            color:var(--green);
+            font-size:22px;
+            margin-bottom:8px;
         }
-        /* Contact底部板块 */
-        footer{
+
+        .timeline-card p{
+            color:#444;
+            font-size:17px;
+            line-height:1.6;
+        }
+
+        /* 底部Contact Us板块，和首页保持一致 */
+        .contact-footer{
             background:#eeeeee;
             color:#fff;
-            padding:60px 80px;
+            padding:70px 0;
         }
-        .footer-wrap{
-            display:flex;
-            justify-content:space-between;
-            flex-wrap:wrap;
+
+        .contact-footer .container{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
             gap:40px;
         }
-        .footer-info h4{
-            font-size:22px;
-            margin-bottom:20px;
+
+        .contact-info h3{
+            font-size:26px;
+            color:#222;
+            margin-bottom:24px;
         }
-        .footer-info p{
-            font-size:16px;
-            margin:12px 0;
+
+        .contact-info p{
+            font-size:18px;
+            color:#222;
+            margin-bottom:14px;
+            line-height:1.7;
+        }
+
+        .social-row{
             display:flex;
-            align-items:center;
-            gap:10px;
+            gap:20px;
+            margin-top:30px;
         }
-        .social-logos{
-            display:flex;
-            gap:24px;
-            align-items:center;
-        }
-        .social-logos img{
+
+        .social-row img{
             width:48px;
             height:48px;
         }
+
+        .form-title{
+            color:#222;
+            font-size:26px;
+            margin-bottom:24px;
+        }
+
+        .contact-form input,
+        .contact-form textarea{
+            width:100%;
+            padding:14px;
+            margin-bottom:16px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        .contact-form button{
+            padding:14px 32px;
+            background:#009E49;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        /* 响应式移动端 */
+        @media(max-width:992px){
+            .two-col{
+                grid-template-columns:1fr;
+            }
+
+            .strength-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .timeline-wrap::before{
+                left:30px;
+            }
+
+            .timeline-item{
+                width:100%;
+                padding-left:60px;
+                padding-right:0;
+                text-align:left;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right{
+                left:0;
+                transform:none;
+            }
+
+            .timeline-item.left .timeline-dot,
+            .timeline-item.right .timeline-dot{
+                left:20px;
+                right:auto;
+            }
+
+            .contact-footer .container{
+                grid-template-columns:1fr;
+            }
+
+            nav{
+                padding:0 20px;
+            }
+
+            .nav-menu{
+                gap:24px;
+                margin-right:20px;
+            }
+        }
+
+        @media(max-width:576px){
+            .strength-grid{
+                grid-template-columns:1fr;
+            }
+
+            .banner-text h1{
+                font-size:36px;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <!--导航栏-->
+    <!-- 导航栏 -->
     <nav>
         <div class="logo">
             <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
         </div>
-        <div class="nav-links">
+        <div class="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+            <a href="about.html" class="active">About</a>
             <a href="products.html">Products</a>
             <a href="news.html">News</a>
-            <a href="contact.html">Contact</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- About页面Banner【已经删掉绿色遮罩+动态移动线条，左侧图片原生色彩，右侧保留点阵】 -->
-    <section class="about-banner">
-        <div class="banner-left"></div>
-        <div class="banner-right">
+    <!-- 顶部Banner，已还原绿色遮罩和移动线条 -->
+    <div class="about-banner">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/banner1.jpg" alt="About Us Banner">
+
+        <!-- 绿色渐变遮罩，已还原 -->
+        <div class="banner-overlay"></div>
+
+        <!-- 移动线条动画，已还原 -->
+        <div class="banner-geo">
+            <div class="line-ani line-1"></div>
+            <div class="line-ani line-2"></div>
+            <div class="line-ani line-3"></div>
+        </div>
+
+        <div class="banner-text">
             <h1>About Us</h1>
-            <p>Jiaxing Harmony Packaging Products Co., Ltd.<br>Professional Food-Grade Packaging Manufacturer</p>
+            <p>Jiaxing Harmony Packaging Products Co., Ltd. | Professional Food-Grade Packaging Manufacturer</p>
+        </div>
+    </div>
+
+    <!-- Who We Are -->
+    <section class="who-we-are">
+        <div class="floating-geo geo-circle1"></div>
+        <div class="floating-geo geo-circle2"></div>
+
+        <div class="container">
+            <h2 class="section-title">Who We Are</h2>
+            <p class="section-subtitle">20+ years dedicated to food packaging manufacturing</p>
+
+            <div class="two-col">
+                <div class="text-col">
+                    <p>Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
+
+                    <p>The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
+                </div>
+
+                <div class="img-col">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="Factory Workshop">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About正文 -->
-    <section class="about-content">
-        <h2>About Us</h2>
-        <p class="p1">Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
-        <p class="p2">The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
-        <button class="about-btn" onclick="location.href='products.html'">View Products</button>
+    <!-- Our Strength -->
+    <section class="our-strength">
+        <div class="container">
+            <h2 class="section-title">Our Strength</h2>
+            <p class="section-subtitle">Why global buyers choose Harmony Pack</p>
+
+            <div class="strength-grid">
+                <div class="str-card">
+                    <h3>Food Grade Material</h3>
+                    <p>All raw materials meet FDA, LFGB food safety standards, test reports available.</p>
+                </div>
+
+                <div class="str-card">
+                    <h3>OEM & ODM</h3>
+                    <p>Custom size, printing, mold design, one-stop packaging service.</p>
+                </div>
+
+                <div class="str-card">
+                    <h3>20+ Years Factory</h3>
+                    <p>Rich manufacturing experience, strict quality control system.</p>
+                </div>
+
+                <div class="str-card">
+                    <h3>Global Export</h3>
+                    <p>Stable supply chain, worldwide shipping and flexible lead time.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!--底部联系板块-->
-    <footer>
-        <div class="footer-wrap">
-            <div class="footer-info">
-                <h4>Jiaxing Harmony Packaging Products Co., Ltd.</h4>
+    <!-- 时间线 Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Our History</h2>
+            <p class="section-subtitle">Development journey of Harmony Pack</p>
+
+            <div class="timeline-wrap">
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>2004</h4>
+                        <p>Factory founded, started production of plastic food packaging containers.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>2012</h4>
+                        <p>Expanded production line, added degradable bagasse and paper packaging.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>2018</h4>
+                        <p>Passed FDA & LFGB certification, started large-scale overseas export.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <h4>2025</h4>
+                        <p>New workshop built, upgraded mold workshop for custom packaging.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us底部板块 -->
+    <section class="contact-footer" id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <h3>Jiaxing Harmony Packaging Products Co., Ltd.</h3>
                 <p>📍 Fl.1, Bldg. 2, 168 Rongda Rd., Wanghai., Haiyan, Jiaxing, Zhejiang, China.</p>
                 <p>Whatsapp: +86 17260367072</p>
-                <p>Tel: +86 17260367072</p>
-                <p>Sales: Kelvin</p>
-                <p>Email: kelvin@hamopak.com</p>
+                <p>☎ +86 17260367072</p>
+                <p>👤 Kelvin (sales)</p>
+                <p>✉ kelvin@hamopak.com</p>
+
+                <div class="social-row">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/instagram.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/youtube.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/tik-tok.png">
+                </div>
             </div>
-            <div class="social-logos">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png" alt="Facebook">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png" alt="LinkedIn">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/instagram.png" alt="Instagram">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/youtube.png" alt="YouTube">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/tik-tok.png" alt="Tiktok">
+
+            <div>
+                <h3 class="form-title">Send Your Inquiry</h3>
+                <form class="contact-form" action="https://formspree.io/f/mgaedrwj" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="You interested product & quantity" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <script>
+        // 滚动观察器：卡片+时间线入场动画
+        const observer = new IntersectionObserver((entries)=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.querySelectorAll('.str-card').forEach((card,idx)=>{
+                        setTimeout(()=>card.classList.add('show'), idx*150);
+                    });
+
+                    entry.target.querySelectorAll('.timeline-item').forEach((item,idx)=>{
+                        setTimeout(()=>item.classList.add('show'), idx*220);
+                    });
+                }
+            });
+        },{threshold:0.2});
+
+        document.querySelector('.our-strength') && observer.observe(document.querySelector('.our-strength'));
+        document.querySelector('.timeline-section') && observer.observe(document.querySelector('.timeline-section'));
+    </script>
 </body>
 </html>
