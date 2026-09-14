@@ -2,295 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>About Us - HARMONY PACK</title>
-
-    <!-- 统一使用 haavicon.png，不使用 .ico -->
-    <link rel="icon" type="image/png" href="havicon.png">
-    <link rel="shortcut icon" type="image/png" href="havicon.png">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Pack | About Us</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
+            font-family: "Microsoft YaHei", sans-serif;
         }
-
-        body {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
+        /* ========== 导航栏（和首页保持完全一致） ========== */
+        nav {
+            height: 100px;
             background: #ffffff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 99;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            padding: 14px 20px;
+            padding: 0 50px 0 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top:0;
+            z-index:999;
+        }
+        .logo-box img{
+            height:100px;
+        }
+        .nav-links{
+            display:flex;
+            gap:42px;
+            margin-right:100px;
+        }
+        .nav-links a{
+            font-family:"Microsoft YaHei",sans-serif;
+            font-weight:bold;
+            font-size:18px;
+            color:#009E49;
+            text-decoration:none;
+        }
+        .nav-links a.active{
+            color:#000;
         }
 
-        .logo img {
-            height: 50px;
+        /* ========== About Us 主板块 ========== */
+        .about-section{
+            padding:90px 40px;
+        }
+        .about-container{
+            max-width:1440px;
+        }
+        .about-title{
+            font-family:"Microsoft YaHei";
+            font-size:40px;
+            font-weight:bold;
+            color:#009E49;
+            margin-left:320px;
+            margin-bottom:24px;
+        }
+        .text-line1{
+            font-family:"Microsoft YaHei";
+            font-size:20px;
+            font-weight:bold;
+            color:#009E49;
+            margin-left:320px;
+            max-width:50%;
+            line-height:1.7;
+            margin-bottom:20px;
+        }
+        .text-line2{
+            font-family:"Microsoft YaHei";
+            font-size:20px;
+            color:#000000;
+            margin-left:320px;
+            max-width:50%;
+            line-height:1.7;
+            margin-bottom:40px;
+        }
+        .about-btn{
+            margin-left:320px;
+            width:250px;
+            height:100px;
+            background:#ffffff;
+            border:3px solid #000;
+            border-radius:20px;
+            font-family:"Microsoft YaHei";
+            font-size:24px;
+            color:#000;
+            cursor:pointer;
+            transition:0.5s all ease;
+        }
+        .about-btn:hover{
+            background:#000;
+            color:#fff;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 32px;
+        /* ========== 底部Contact板块 和首页保持统一 ========== */
+        .contact-section{
+            background:#eeeeee;
+            color:#ffffff;
+            padding:70px 40px;
         }
-
-        nav a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 500;
-            transition: color 0.25s;
+        .contact-wrap{
+            max-width:1440px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:60px;
         }
-
-        nav a:hover {
-            color: #0088cc;
+        .contact-info h3{
+            font-size:24px;
+            margin-bottom:22px;
+            color:#222;
         }
-
-        .banner {
-            width: 100%;
-            height: 320px;
-            background-color: #f7f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: none;
+        .contact-info p{
+            font-size:17px;
+            color:#222;
+            margin-bottom:14px;
+            line-height:1.6;
         }
-
-        .banner-text {
-            text-align: center;
+        .social-logos{
+            margin-top:30px;
+            display:flex;
+            gap:20px;
         }
-
-        .banner-text h1 {
-            font-size: 42px;
-            color: #005b96;
-            margin-bottom: 12px;
+        .social-logos img{
+            width:48px;
+            height:48px;
         }
-
-        .banner-text p {
-            font-size: 18px;
-            color: #555;
+        .form-title{
+            color:#222;
+            font-size:26px;
+            margin-bottom:24px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        .contact-form input, .contact-form textarea{
+            width:100%;
+            padding:14px;
+            margin-bottom:16px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
         }
-
-        .section-title {
-            text-align: center;
-            font-size: 30px;
-            color: #005b96;
-            margin-bottom: 40px;
+        .contact-form button{
+            padding:14px 32px;
+            background:#009E49;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
         }
-
-        .about-row {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text h2 {
-            font-size: 26px;
-            margin-bottom: 16px;
-            color: #222;
-        }
-
-        .about-text p {
-            margin-bottom: 14px;
-            font-size: 16px;
-            color: #444;
-        }
-
-        .about-img {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-img img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .team-wrap {
-            background: #f4f7f9;
-            padding: 60px 0;
-            margin-top: 60px;
-        }
-
-        .team-list {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-        }
-
-        .team-card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-        }
-
-        .team-card h4 {
-            margin-top: 12px;
-            color: #222;
-        }
-
-        .team-card span {
-            color: #666;
-            font-size: 14px;
-        }
-
-        footer {
-            background: #003b63;
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 14px;
-            }
-
-            nav ul {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .banner {
-                height: 240px;
-            }
-
-            .banner-text h1 {
-                font-size: 30px;
-            }
-
-            .about-row {
-                flex-direction: column;
-            }
-
-            .container {
-                padding: 40px 16px;
-            }
-
-            .team-wrap {
-                padding: 40px 0;
+        /* 移动端适配 */
+        @media(max-width:1024px){
+            .about-title,.text-line1,.text-line2,.about-btn{
+                margin-left:40px;
+                max-width:80%;
             }
         }
-
-        @media (max-width: 480px) {
-            nav ul {
-                gap: 12px;
-            }
-
-            .banner {
-                height: 200px;
-            }
-
-            .banner-text h1 {
-                font-size: 26px;
-            }
-
-            .banner-text p {
-                font-size: 16px;
-            }
-
-            .section-title {
-                font-size: 24px;
+        @media(max-width:768px){
+            nav{padding:0 20px;}
+            .nav-links{gap:20px;margin-right:20px;}
+            .about-title,.text-line1,.text-line2,.about-btn{
+                margin-left:20px;
+                max-width:95%;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="havicon.png" alt="HARMONY PACK Logo">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html" style="color:#0088cc;">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo-box">
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
         </div>
-    </header>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="products.html">Products</a>
+            <a href="news.html">News</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-    <section class="banner">
-        <div class="banner-text">
-            <h1>About Us</h1>
-            <p>HARMONY PACK — Professional Food Packaging Manufacturer</p>
-        </div>
+    <!-- About Us内容 -->
+    <section class="about-section">
+        <h2 class="about-title">About Us</h2>
+        <p class="text-line1">Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
+        <p class="text-line2">The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
+        <a href="products.html">
+            <button class="about-btn">View Products</button>
+        </a>
     </section>
 
-    <main class="container">
-        <h2 class="section-title">Who We Are</h2>
-        <div class="about-row">
-            <div class="about-text">
-                <h2>HARMONY PACK</h2>
-                <p>Founded in Jiaxing, China, HARMONY PACK is a professional manufacturer focusing on eco-friendly food packaging products. Our main products include sugarcane pulp containers, sushi boxes, kraft paper bags, sauce bottles and other disposable food packaging for wholesale export.</p>
-                <p>We have complete certification: FSC, ISO9001, BRCGS, FDA. We provide customized packaging solutions for global buyers, covering Amazon and Alibaba International station customers.</p>
-                <p>We insist on environmental protection, stable quality and competitive price to build long-term cooperation with customers all over the world.</p>
-            </div>
-            <div class="about-img">
-                <img src="factory.jpg" alt="Factory">
-            </div>
-        </div>
-    </main>
-
-    <section class="team-wrap">
-        <h2 class="section-title">Our Team</h2>
-        <div class="team-list">
-            <div class="team-card">
-                <h4>Founder</h4>
-                <span>Management & Strategy</span>
-            </div>
-            <div class="team-card">
-                <h4>Sales Team</h4>
-                <span>Overseas Business</span>
-            </div>
-            <div class="team-card">
-                <h4>QC Team</h4>
-                <span>Quality Control</span>
-            </div>
-            <div class="team-card">
-                <h4>R&D Team</h4>
-                <span>Product Development</span>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 HARMONY PACK. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+    <!-- Contact底部板块 -->
+    <section class="contact-section" id="contact">
+        <div class="contact-wrap">
+            <div class="contact-info">
+                <h3>Jiaxing Harmony Packaging Products Co., Ltd.</h3>
+                <p>📍 Fl.1, Bldg. 2, 168 Rongda Rd., Wanghai., Haiyan, Jiaxing, Zhejiang, China.</p>
+                <p>Whatsapp: +86 17260367072</p>
+                <p>☎ +86 17260367072</p>
+                <p>👤 Kelvin（sales)</p>
+                <p>📩 kelvin@hamopak.com</p>
+                <div class="social-logos">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/facebook.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/linkedin.png">
+                    <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main
