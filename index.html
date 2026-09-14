@@ -242,167 +242,159 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
     </div>
 </section>
 
-<!-- ====================== Why Choose Us 板块 ====================== -->
-<section class="why-choose">
-    <div class="bg-pattern"></div>
-    <div class="container">
-        <h2 class="section-title">Why Choose Us</h2>
-        <p class="section-subtitle">We deliver reliable food packaging solutions for global partners</p>
-        <div class="advantage-grid">
-            <div class="adv-card">
-                <div class="adv-icon">✓</div>
-                <h3>Food Grade Material</h3>
-                <p>All raw materials meet international food safety standards, FDA & LFGB available.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon">⚙</div>
-                <h3>OEM & ODM Service</h3>
-                <p>Custom size, printing, mold development from design to finished goods.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon">⏱</div>
-                <h3>20+ Years Experience</h3>
-                <p>Professional manufacturer specializing in food packaging production.</p>
-            </div>
-            <div class="adv-card">
-                <div class="adv-icon">🚢</div>
-                <h3>Global Delivery</h3>
-                <p>Stable supply chain, worldwide shipping and flexible lead time.</p>
-            </div>
+<!-- ========== Why Choose Us + Certifications + Testimonials 连续板块 ========== -->
+<section class="brand-section">
+  <!-- 全局流动几何背景 -->
+  <div class="geo-bg">
+    <div class="geo-circle big"></div>
+    <div class="geo-circle small-1"></div>
+    <div class="geo-circle small-2"></div>
+    <div class="geo-dot-pattern"></div>
+    <svg class="wave-line" viewBox="0 0 1920 120" preserveAspectRatio="none">
+      <path d="M0,60 C320,120 480,0 960,60 C1440,120 1600,0 1920,60" stroke="#009E49" stroke-width="2" fill="none" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <!-- Why Choose Us -->
+    <div class="block why-block">
+      <div class="text-left">
+        <h2>Why Choose Us</h2>
+        <p class="sub-heading">Reliable food packaging for global partners</p>
+        <div class="short-line"></div>
+      </div>
+      <div class="four-card-grid">
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <h3>Food Grade Material</h3>
+          <p>Safe materials with test report support.</p>
         </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3>OEM & ODM Service</h3>
+          <p>Custom size, printing and mold development.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>20+ Years Experience</h3>
+          <p>Professional manufacturing and strict QC.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#009E49" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3>Global Delivery</h3>
+          <p>Stable supply chain and worldwide shipping.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- Our Certifications -->
+    <div class="block cert-block">
+      <div class="text-center">
+        <h2>Our Certifications</h2>
+        <p class="sub-heading">Authorized standards for food contact safety</p>
+      </div>
+      <div class="cert-scroll-wrap">
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-logo">FDA</div>
+            <span>FDA</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">BPI</div>
+            <span>BPI</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">LFGB</div>
+            <span>LFGB</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">ISO</div>
+            <span>ISO9001</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">✅</div>
+            <span>Food Safety</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">📄</div>
+            <span>Quality Control</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">🛡️</div>
+            <span>Factory Audit</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-logo">✔</div>
+            <span>Global Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Testimonials -->
+    <div class="block testimonial-block">
+      <div class="text-center">
+        <h2>Client Testimonials</h2>
+        <p class="sub-heading">Feedback from global buyers</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testi-card">
+          <div class="quote-icon">①</div>
+          <p>Stable quality and fast response. A reliable supplier for our catering packaging.</p>
+          <div class="testi-footer">
+            <span>Mark, USA</span>
+            <span>#006633</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-icon">②</div>
+          <p>The custom printing service saved our brand presentation a lot of time.</p>
+          <div class="testi-footer">
+            <span>Sophie, UK</span>
+            <span>#009E49</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="quote-icon">③</div>
+          <p>Professional factory, good communication and on-time delivery.</p>
+          <div class="testi-footer">
+            <span>Leo, Australia</span>
+            <span>#006633</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--底部波浪过渡，衔接Contact板块-->
+  <div class="bottom-wave">
+    <svg viewBox="0 0 1920 180" preserveAspectRatio="none">
+      <path fill="#006633" d="M0,90 C400,180 600,0 960,90 C1320,180 1520,0 1920,90 L1920,180 L0,180 Z"></path>
+    </svg>
+  </div>
 </section>
 
-<!-- ====================== Certifications 证书板块 ====================== -->
-<section class="cert-section">
-    <div class="bg-pattern"></div>
-    <div class="container">
-        <h2 class="section-title">Our Certifications</h2>
-        <p class="section-subtitle">International authorized certificates to guarantee product quality</p>
-    </div>
-    <div class="cert-scroll-wrap">
-        <div class="cert-track">
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="FDA Certificate">
-                <p>FDA</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg" alt="BPI Certificate">
-                <p>BPI</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg" alt="LFGB Certificate">
-                <p>LFGB</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="ISO Certificate">
-                <p>ISO 9001</p>
-            </div>
-            <!-- 复制一遍实现无缝循环滚动 -->
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="FDA Certificate">
-                <p>FDA</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg" alt="BPI Certificate">
-                <p>BPI</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg" alt="LFGB Certificate">
-                <p>LFGB</p>
-            </div>
-            <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="ISO Certificate">
-                <p>ISO 9001</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- ====================== Testimonials 客户评价轮播 ====================== -->
-<section class="testimonial-section">
-    <div class="bg-pattern"></div>
-    <div class="container">
-        <h2 class="section-title">Client Testimonials</h2>
-        <p class="section-subtitle">Feedback from our global buyers</p>
-        <div class="testimonial-slider">
-            <div class="test-track">
-                <div class="test-card">
-                    <p>"Stable quality food containers, fast response for custom orders. Great supplier!"</p>
-                    <h4>Mark, USA | Catering Retailer</h4>
-                </div>
-                <div class="test-card">
-                    <p>"Bagasse boxes meet our compostable requirement. OEM printing works perfectly."</p>
-                    <h4>Sophie, UK | Takeaway Chain</h4>
-                </div>
-                <div class="test-card">
-                    <p>"20 years factory, samples delivered quickly. Recommend for packaging sourcing."</p>
-                    <h4>Leo, Australia | Importer</h4>
-                </div>
-            </div>
-            <div class="slide-dots">
-                <span class="dot active" onclick="switchSlide(0)"></span>
-                <span class="dot" onclick="switchSlide(1)"></span>
-                <span class="dot" onclick="switchSlide(2)"></span>
-            </div>
-        </div>
-    </div>
-</section>
-
-    
-<!-- ========== About Us 板块 ========== -->
-<section class="about-us-section">
-    <div class="about-geometric-bg">
-        <span class="geo-circle geo-1"></span>
-        <span class="geo-circle geo-2"></span>
-        <span class="geo-hex geo-1"></span>
-        <span class="geo-hex geo-2"></span>
-        <span class="geo-wave"></span>
-        <span class="geo-dots"></span>
-        <span class="geo-line geo-line-1"></span>
-        <span class="geo-line geo-line-2"></span>
-    </div>
-
-    <div class="container about-inner">
-        <div class="about-left-deco"></div>
-
-        <div class="about-right-content">
-            <h2 class="section-title about-title">About Us</h2>
-            <p class="about-subtitle">Professional food packaging manufacturer for global partners</p>
-
-            <p class="about-text">
-                We are a professional enterprise specializing in the research, development, production and sales of food packaging products. Our main products include plastic containers, paper containers, bagasse boxes, party trays, sauce bottles and paper bags, serving catering, retail and takeaway industries.
-            </p>
-
-            <p class="about-text">
-                With rich manufacturing experience, strict quality control and flexible OEM/ODM capability, we provide safe, reliable and customized packaging solutions for customers all over the world.
-            </p>
-
-            <div class="about-highlight">
-                <div class="highlight-item">
-                    <strong>20+</strong>
-                    <span>Years Experience</span>
-                </div>
-                <div class="highlight-item">
-                    <strong>6</strong>
-                    <span>Product Series</span>
-                </div>
-                <div class="highlight-item">
-                    <strong>FDA / LFGB</strong>
-                    <span>Food Grade</span>
-                </div>
-                <div class="highlight-item">
-                    <strong>Global</strong>
-                    <span>Export Service</span>
-                </div>
-            </div>
-
-            <a href="contact.html" class="about-btn">Contact Us</a>
-        </div>
-    </div>
-</section>
-
-<!-- 联系表单，放在View Products按钮后面 -->
+<!-- Contact联系表单，放在View Products按钮后面 -->
 <section class="contact-form-section">
     <div class="form-container">
         <h3 class="form-title">Send Your Inquiry</h3>
@@ -463,6 +455,234 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
 .contact-form button:hover{
     background:#000;
     color:#fff;
+}
+    /* ========== 板块配套CSS，放到index.html的<style>标签里 ========== */
+.brand-section {
+  position: relative;
+  padding: 120px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f0faf4 100%);
+  overflow: hidden;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+}
+.block {
+  margin-bottom: 110px;
+}
+.text-left {
+  text-align: left;
+  margin-bottom:40px;
+}
+.text-center {
+  text-align: center;
+  margin-bottom:40px;
+}
+h2 {
+  font-family: "Microsoft YaHei",sans-serif;
+  font-size:42px;
+  color:#111;
+  margin-bottom:12px;
+}
+.sub-heading {
+  font-size: 20px;
+  color:#444;
+  margin-bottom:14px;
+}
+.short-line {
+  width:90px;
+  height:4px;
+  background:#009E49;
+  border-radius: 2px;
+}
+/* 背景几何 */
+.geo-bg {
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+.geo-circle {
+  border-radius: 50%;
+  background:radial-gradient(circle, rgba(0,158,73,0.12),transparent 70%);
+  position:absolute;
+}
+.geo-circle.big {
+  width:550px;
+  height:550px;
+  top:20px;
+  left:-220px;
+}
+.geo-circle.small-1 {
+  width:200px;
+  height:200px;
+  top:80px;
+  right:100px;
+  background:radial-gradient(circle, rgba(0,102,51,0.14),transparent 70%);
+}
+.geo-circle.small-2 {
+  width:140px;
+  height:140px;
+  top:260px;
+  right:220px;
+}
+.geo-dot-pattern {
+  position:absolute;
+  left:30%;
+  top:220px;
+  width:220px;
+  height:220px;
+  background-image: radial-gradient(#009E49 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity:0.22;
+}
+.wave-line {
+  position:absolute;
+  width:100%;
+  left:0;
+  top:420px;
+}
+/* Why choose us 四卡片 */
+.four-card-grid {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:26px;
+}
+.feature-card {
+  background:#ffffff;
+  padding:34px 24px;
+  border-radius:16px;
+  box-shadow:0 4px 16px rgba(0,102,51,0.08);
+  transition:0.4s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow:0 12px 26px rgba(0,102,51,0.15);
+}
+.icon-circle {
+  width:56px;
+  height:56px;
+  border:2px solid #009E49;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+.feature-card h3 {
+  font-family:"Microsoft YaHei",sans-serif;
+  font-size:22px;
+  color:#006633;
+  margin-bottom:10px;
+}
+.feature-card p {
+  font-size:16px;
+  color:#444;
+  line-height:1.6;
+}
+/* Certifications 证书横向卡片 */
+.cert-grid {
+  display:grid;
+  grid-template-columns: repeat(8,1fr);
+  gap:18px;
+}
+.cert-card {
+  background:#fff;
+  padding:24px 12px;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(0,102,51,0.07);
+  text-align:center;
+  transition:0.3s;
+}
+.cert-card:hover {
+  transform:translateY(-5px);
+}
+.cert-logo {
+  font-size:28px;
+  font-weight:bold;
+  color:#006633;
+  margin-bottom:8px;
+}
+.cert-card span {
+  font-size:15px;
+  color:#333;
+}
+/* Testimonials客户评价 */
+.testimonial-grid {
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:28px;
+}
+.testi-card {
+  background:linear-gradient(145deg, rgba(0,158,73,0.08),#ffffff);
+  border:1px solid rgba(0,158,73,0.18);
+  border-radius:16px;
+  padding:32px;
+}
+.quote-icon {
+  width:42px;
+  height:42px;
+  border:2px solid #009E49;
+  border-radius:50%;
+  color:#009E49;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  margin-bottom:20px;
+}
+.testi-card p {
+  font-size:17px;
+  color:#333;
+  line-height:1.7;
+  min-height:100px;
+}
+.testi-footer {
+  margin-top:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#006633;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:10px;
+}
+/* 底部波浪 */
+.bottom-wave {
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  width:100%;
+  height:180px;
+  z-index:1;
+}
+.bottom-wave svg {
+  width:100%;
+  height:100%;
+}
+/* 滚动动画 */
+.block {
+  opacity:0;
+  transform:translateY(40px);
+  transition: 0.7s ease;
+}
+.block.show {
+  opacity:1;
+  transform:translateY(0);
+}
+/* 移动端适配 */
+@media(max-width:1024px){
+  .four-card-grid{grid-template-columns: repeat(2,1fr);}
+  .cert-grid{grid-template-columns: repeat(4,1fr);}
+  .testimonial-grid{grid-template-columns: repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .four-card-grid{grid-template-columns: 1fr;}
+  .cert-grid{grid-template-columns: repeat(2,1fr);}
+  .testimonial-grid{grid-template-columns: 1fr;}
+  h2{font-size:32px;}
 }
 </style>
 <!-- ========== Contact Us 底部联系板块 ========== -->
@@ -569,6 +789,20 @@ document.querySelector('.banner-wrap').addEventListener('mouseleave',()=>{
     font-size:16px;
 }
 </style>
+<!-- JS：滚动渐入动画，放在index.html底部</body>前 -->
+<script>
+const sectionObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.block').forEach((block,idx)=>{
+        setTimeout(()=>block.classList.add('show'), idx*220);
+      })
+    }
+  })
+},{threshold:0.15})
+const brandSection = document.querySelector('.brand-section');
+if(brandSection) sectionObserver.observe(brandSection);
+</script>
 
 </body>
 </html>
