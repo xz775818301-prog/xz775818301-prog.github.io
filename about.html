@@ -11,96 +11,103 @@
             box-sizing: border-box;
             font-family: "Microsoft YaHei", sans-serif;
         }
-        /* 导航栏 复用首页样式，高度100px，白色背景，字体潘通350 */
+
         nav {
             height: 100px;
             background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 50px 0 50px;
+            padding: 0 50px;
             position: sticky;
             top: 0;
             z-index: 999;
         }
+
         .nav-logo img {
             width: 240px;
             height: 100px;
             object-fit: contain;
         }
+
         .nav-menu {
             display: flex;
             gap: 48px;
             margin-right: 100px;
         }
+
         .nav-menu a {
             font-size: 20px;
             font-weight: bold;
-            color: #006633; /* 潘通350 */
+            color: #006633;
             text-decoration: none;
         }
-        /* About主体浅绿色容器，透明度40% */
+
         .about-green-wrap {
-            background-color: rgba(0, 158, 73, 0.4);
+            background-color: rgba(0, 158, 73, 0.65);
             margin: 40px 50px;
             padding: 60px 0;
         }
+
         .about-title {
-            font-size: 32px; /* 修改为32号 */
+            font-size: 32px;
             font-weight: bold;
-            color: #fff;
+            color: #ffffff;
             text-align: center;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
             margin-bottom: 40px;
             font-family: "Microsoft YaHei", sans-serif;
         }
+
         .about-text-block {
             width: calc(100% / 3);
             margin: 0 auto;
         }
+
         .about-text-block p {
             font-size: 18px;
             color: #ffffff;
-            text-shadow: 1px 1px 2px #000;
-            text-align: justify; /* 两端对齐 */
+            text-shadow: 1px 1px 2px #000000;
+            text-align: justify;
             margin-bottom: 24px;
             line-height: 1.6;
+            font-family: "Microsoft YaHei", sans-serif;
         }
+
         .about-img-wrap {
             text-align: center;
             margin-top: 60px;
         }
+
         .about-img-wrap img {
             width: 1020px;
             height: 500px;
             object-fit: cover;
         }
-        /* 标语+logo区域 */
+
         .slogan-area {
             margin-top: 40px;
             text-align: center;
         }
+
         .slogan {
-            font-size: 26px;
+            font-size: 32px;
             font-weight: bold;
-            color: #d4af37; /* 金色 */
-            font-family: "Edwardian Script ITC", "Brush Script MT", cursive;
-            margin-bottom:30px;
-            letter-spacing: 1px;
-            /* 雕刻浮雕效果 */
-            text-shadow:
-                1px 1px 0 #8a6d1f,
-                2px 2px 0 #5c4610,
-                0 0 8px rgba(212, 175, 55, 0.35);
+            font-style: italic;
+            color: #000000;
+            font-family: "Microsoft YaHei", sans-serif;
+            margin-bottom: 30px;
         }
+
         .slogan-logo img {
-            width:240px;
-            height:100px;
+            width: 240px;
+            height: 100px;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-<!-- 导航栏 -->
+
 <nav>
     <div class="nav-logo">
         <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
@@ -114,24 +121,25 @@
     </div>
 </nav>
 
-<!-- 浅绿色包裹区域 -->
 <div class="about-green-wrap">
     <h2 class="about-title">About Us</h2>
+
     <div class="about-text-block">
         <p>Jiaxing Harmony Packaging Products Co., Ltd. is a professional manufacturer specializing in food-grade packaging solutions, with over 20 years of industry experience. The company offers flexible production capabilities, leveraging its decade-long contract manufacturing expertise to deliver high-quality, customized packaging for global clients.</p>
+
         <p>The company produces and sells all kinds of plastic (PP, PS, PET) and degradable materials (bagasse and kraft paper) food packaging container, for customers from product design, proofing, mold development, product manufacturing to provide satisfactory services.</p>
     </div>
+
     <div class="about-img-wrap">
-        <!-- 已填入你的公司图片链接 -->
         <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/about%20company.png" alt="Company">
     </div>
 </div>
 
-<!-- 标语与logo -->
 <div class="slogan-area">
     <p class="slogan">Quality, Professionalism, Safety, Warmth</p>
+
     <div class="slogan-logo">
-        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="logo">
+        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Logo">
     </div>
 </div>
 
