@@ -225,16 +225,18 @@
             opacity:0.15;
             pointer-events:none;
         }
-        .product-card.active-card{
-            transform:translateX(-180px);
+        /* 只有B/C点击才左移到A位置，A点击不动 */
+        .product-card.active-card.move-left{
+            transform: translateX(calc(-100% - 36px));
         }
 
-        /* 产品详情侧滑面板【重写排版】 */
+        /* 产品详情面板【重写排版，按钮放在Lid后面】 */
         .product-detail-panel{
-            position:fixed;
-            top:120px;
-            right:-460px;
-            width:440px;
+            position:absolute;
+            top:0;
+            right:0;
+            width:calc(200% + 72px);
+            height:100%;
             background:#fff;
             box-shadow:-5px 0 25px rgba(0,0,0,0.12);
             border-radius:16px 0 0 16px;
@@ -243,7 +245,7 @@
             z-index:900;
         }
         .product-detail-panel.show{
-            right:0;
+            right: calc(-100% - 36px);
         }
         .detail-close{
             position:absolute;
@@ -306,7 +308,7 @@
             .product-grid{
                 grid-template-columns: repeat(2,1fr);
             }
-            .product-card.active-card{
+            .product-card.active-card.move-left{
                 transform:none;
             }
             .product-detail-panel{
@@ -465,7 +467,7 @@
         <div class="pagination" id="paginationBox">
         </div>
 
-        <!-- 产品详情面板【排版更新】 -->
+        <!-- 产品详情面板【排版更新：按钮放在Lid后面】 -->
         <div class="product-detail-panel">
             <span class="detail-close">×</span>
             <div class="detail-row"><strong>Category:</strong><span id="det-cate"></span></div>
@@ -473,9 +475,9 @@
             <div class="detail-row">
                 <strong>Size：</strong>
                 <span id="det-size-base"></span>
-                <button class="unit-toggle-btn">Convert to in</button>
                 <br>
                 <span style="margin-left:110px;" id="det-size-lid"></span>
+                <button class="unit-toggle-btn">Convert to in</button>
             </div>
             <div class="detail-row">
                 <strong>Material:</strong>
@@ -775,7 +777,7 @@ function renderProducts(pageNum){
         const rowWrap = document.createElement('div');
         rowWrap.className = "product-row";
         const rowItems = pageProducts.slice(i,i+3);
-        rowItems.forEach(item=>{
+        rowItems.forEach((item,idx)=>{
             const card = document.createElement('div');
             card.className="product-card";
             card.innerHTML = `
@@ -785,15 +787,19 @@ function renderProducts(pageNum){
                     <div class="model">Model: ${item.model}</div>
                 </div>
             `
-            // 点击卡片事件【修复：点击哪个卡片，哪个卡片左移】
+            // 点击卡片事件【匹配截图逻辑】
             card.onclick = function(){
                 // 清除旧状态
-                document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
+                document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
                 document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
                 // 当前行
                 const row = this.closest('.product-row');
                 row.classList.add('fade-siblings');
                 this.classList.add('active-card');
+                // 如果是B或者C，增加左移class；A不移动
+                if(idx !==0){
+                    this.classList.add('move-left');
+                }
 
                 // 填充详情面板
                 document.getElementById('det-cate').innerText = item.subcate;
@@ -825,7 +831,7 @@ function renderProducts(pageNum){
 //关闭详情面板
 document.querySelector('.detail-close').addEventListener('click',()=>{
     document.querySelector('.product-detail-panel').classList.remove('show');
-    document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
+    document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
     document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
 })
 
@@ -843,7 +849,7 @@ function renderPagination(){
             renderProducts(currentPage);
             //关闭详情面板，切换分页重置状态
             document.querySelector('.product-detail-panel').classList.remove('show');
-            document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
+            document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
             document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
         }
         paginationBox.appendChild(btn);
