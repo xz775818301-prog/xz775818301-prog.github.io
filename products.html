@@ -101,7 +101,7 @@
             background:#00572b;
         }
         .sub-category.open{
-            max-height:200px;
+            max-height:600px;
         }
         .sub-category a{
             display:block;
@@ -110,9 +110,15 @@
             text-decoration:none;
             font-size:18px;
             transition:background 0.25s;
+            cursor:pointer;
         }
         .sub-category a:hover{
             background:#004924;
+        }
+        .sub-category a.active{
+            background:#89e872;
+            color:#003b1c;
+            font-weight:bold;
         }
         .arrow{
             transition:transform 0.3s ease;
@@ -319,76 +325,79 @@
     <!--左侧固定侧边分类栏-->
     <div class="sidebar-left">
         <h2>Product Categories</h2>
-        <!--类目1-->
+        <!--类目1 Plastic Containers-->
         <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Food Containers</span>
+            <div class="category-main" onclick="toggleMain(this,'Plastic Containers')">
+                <span>Plastic Containers</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
+                <a onclick="toggleSubCat(this,'Plastic Sushi Container')">Plastic Sushi Container</a>
+                <a onclick="toggleSubCat(this,'Plastic Party Tray')">Plastic Party Tray</a>
+                <a onclick="toggleSubCat(this,'Plastic Salad Container')">Plastic Salad Container</a>
+                <a onclick="toggleSubCat(this,'Plastic Bento Box')">Plastic Bento Box</a>
+                <a onclick="toggleSubCat(this,'Plastic Round Bowl')">Plastic Round Bowl</a>
             </div>
         </div>
-        <!--类目2（默认选中激活）-->
+        <!--类目2 Paper Packaging-->
         <div class="category-item">
-            <div class="category-main active" onclick="toggleSub(this)">
+            <div class="category-main" onclick="toggleMain(this,'Paper Packaging')">
                 <span>Paper Packaging</span>
                 <span class="arrow">▼</span>
             </div>
-            <div class="sub-category open">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
+            <div class="sub-category">
+                <a onclick="toggleSubCat(this,'Kraft Paper Sushi Container')">Kraft Paper Sushi Container</a>
+                <a onclick="toggleSubCat(this,'Kraft Paper Salad Container')">Kraft Paper Salad Container</a>
+                <a onclick="toggleSubCat(this,'Kraft Paper Bento Box')">Kraft Paper Bento Box</a>
+                <a onclick="toggleSubCat(this,'Kraft Paper Round Bowl')">Kraft Paper Round Bowl</a>
             </div>
         </div>
-        <!--类目3-->
+        <!--类目3 Bagasse Products-->
         <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
+            <div class="category-main" onclick="toggleMain(this,'Bagasse Products')">
                 <span>Bagasse Products</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
+                <a onclick="toggleSubCat(this,'Bagasse Sushi Container')">Bagasse Sushi Container</a>
+                <a onclick="toggleSubCat(this,'Bagasse Bento Box')">Bagasse Bento Box</a>
             </div>
         </div>
-        <!--类目4-->
+        <!--类目4 BBQ Packaging-->
         <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Party Trays</span>
+            <div class="category-main" onclick="toggleMain(this,'BBQ Packaging')">
+                <span>BBQ Packaging</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
+                <a onclick="toggleSubCat(this,'Roast Chicken Box')">Roast Chicken Box</a>
+                <a onclick="toggleSubCat(this,'Rib Box')">Rib Box</a>
             </div>
         </div>
-        <!--类目5-->
+        <!--类目5 Paper Bags-->
         <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Sauce Bottles</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
-        <!--类目6-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
+            <div class="category-main" onclick="toggleMain(this,'Paper Bags')">
                 <span>Paper Bags</span>
                 <span class="arrow">▼</span>
             </div>
             <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
+                <a onclick="toggleSubCat(this,'Standard Kraft Paper Bag')">Standard Kraft Paper Bag</a>
+                <a onclick="toggleSubCat(this,'Custom Size Paper Bag')">Custom Size Paper Bag</a>
+                <a onclick="toggleSubCat(this,'Baking Bag')">Baking Bag</a>
+            </div>
+        </div>
+        <!--类目6 Catering Accessories-->
+        <div class="category-item">
+            <div class="category-main" onclick="toggleMain(this,'Catering Accessories')">
+                <span>Catering Accessories</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="sub-category">
+                <a onclick="toggleSubCat(this,'Sauce Cup')">Sauce Cup</a>
+                <a onclick="toggleSubCat(this,'Sauce Bottle')">Sauce Bottle</a>
+                <a onclick="toggleSubCat(this,'Knife&Fork')">Knife&Fork</a>
+                <a onclick="toggleSubCat(this,'Sticker')">Sticker</a>
+                <a onclick="toggleSubCat(this,'Paper Belt')">Paper Belt</a>
             </div>
         </div>
     </div>
@@ -414,257 +423,127 @@
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-    // 控制侧边栏子类目展开收起
-    function toggleSub(el){
-        const subMenu = el.nextElementSibling;
-        const arrow = el.querySelector('.arrow');
-        subMenu.classList.toggle('open');
-        arrow.classList.toggle('rotate');
-    }
-    window.toggleSub = toggleSub;
-
     const detailPanel = document.getElementById('detailPanel');
     const detailWrap = document.getElementById('detailWrap');
-
-    //关闭详情面板
-    window.closeDetail = function(){
-        detailPanel.classList.remove('open');
-        detailWrap.classList.remove('show');
-    }
-
-    // 产品基础数据
-    const allProducts = [
-        {
-            name:"Box Set",model:"HP-01",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"200,100,55",lidMm:"205,105,25",
-            matBase:"OPS",matLid:"PET (anti-fog)",
-            temp:"5℃ to 60℃ (Not microwave safe)",
-            pack:"Inner: PE Bag; Outer: Carton, 300Sets/CTN"
-        },
-        {
-            name:"Food Tray",model:"HP-02",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"220,110,60",lidMm:"225,115,28",
-            matBase:"OPS",matLid:"PET (anti-fog)",
-            temp:"-20℃ to 100℃ (Microwave available)",
-            pack:"Inner: PE Bag; Outer: Carton, 250Sets/CTN"
-        },
-        {
-            name:"Sushi Box",model:"HP-03",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"180,90,50",lidMm:"185,95,22",
-            matBase:"PP",matLid:"PP",
-            temp:"-20℃ to 120℃ (Microwave safe)",
-            pack:"Inner: PE Bag; Outer: Carton,350Sets/CTN"
-        },
-        {
-            name:"Paper Bowl",model:"HP-04",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Paper Packaging",
-            baseMm:"160,160,65",lidMm:"165,165,20",
-            matBase:"Kraft Paper",matLid:"PET",
-            temp:"0℃ to 70℃ (Not microwave safe)",
-            pack:"Inner: PE Bag; Outer: Carton,400Sets/CTN"
-        },
-        {
-            name:"Dip Cup",model:"HP-05",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Sauce Bottles",
-            baseMm:"60,60,40",lidMm:"62,62,12",
-            matBase:"PP",matLid:"PP",
-            temp:"-10℃ to 80℃",
-            pack:"Inner: PE Bag; Outer: Carton,1000Sets/CTN"
-        },
-        {
-            name:"Lunch Box",model:"HP-06",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Bagasse Products",
-            baseMm:"210,140,60",lidMm:"215,145,24",
-            matBase:"Bagasse",matLid:"Bagasse",
-            temp:"-18℃ to 120℃ (Microwave safe)",
-            pack:"Inner: PE Bag; Outer: Carton,220Sets/CTN"
-        },
-        {
-            name:"Snack Tray",model:"HP-07",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Party Trays",
-            baseMm:"300,200,40",lidMm:"305,205,18",
-            matBase:"PP",matLid:"PET",
-            temp:"-20℃ to 70℃",
-            pack:"Inner: PE Bag; Outer: Carton,180Sets/CTN"
-        },
-        {
-            name:"Meal Pack",model:"HP-08",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Paper Packaging",
-            baseMm:"190,120,55",lidMm:"195,125,22",
-            matBase:"Kraft Paper",matLid:"Paper",
-            temp:"0℃ to 65℃",
-            pack:"Inner: PE Bag; Outer: Carton,260Sets/CTN"
-        },
-        {
-            name:"Salad Box",model:"HP-09",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"175,125,52",lidMm:"180,130,20",
-            matBase:"OPS",matLid:"PET anti-fog",
-            temp:"5~60℃ Not microwave",
-            pack:"Inner PE Bag; Carton 320Sets/CTN"
-        },
-        {
-            name:"Bread Box",model:"HP-10",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Paper Packaging",
-            baseMm:"220,110,45",lidMm:"224,114,16",
-            matBase:"Kraft Paper",matLid:"Paper",
-            temp:"0~65℃",
-            pack:"Inner PE Bag; Carton 280Sets/CTN"
-        },
-        {
-            name:"Noodle Box",model:"HP-11",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Bagasse Products",
-            baseMm:"200,130,65",lidMm:"204,134,22",
-            matBase:"Bagasse",matLid:"Bagasse",
-            temp:"-18~120℃ Microwave OK",
-            pack:"Inner PE Bag; Carton 200Sets/CTN"
-        },
-        {
-            name:"Dessert Tray",model:"HP-12",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Party Trays",
-            baseMm:"240,160,35",lidMm:"244,164,15",
-            matBase:"PP",matLid:"PET",
-            temp:"-20~70℃",
-            pack:"Inner PE Bag; Carton 210Sets/CTN"
-        },
-        {
-            name:"Takeout Pack",model:"HP-13",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Paper Bags",
-            baseMm:"260,140,80",lidMm:"",
-            matBase:"Kraft Paper",matLid:"N/A",
-            temp:"Not for hot liquid",
-            pack:"Inner PE Bag; Carton 500Sets/CTN"
-        },
-        {
-            name:"Portion Box",model:"HP-14",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"150,80,45",lidMm:"154,84,18",
-            matBase:"OPS",matLid:"PET anti-fog",
-            temp:"5~60℃ Not microwave",
-            pack:"Inner PE Bag; Carton 420Sets/CTN"
-        },
-        {
-            name:"BBQ Tray",model:"HP-15",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Party Trays",
-            baseMm:"320,220,42",lidMm:"324,224,20",
-            matBase:"PP",matLid:"PET",
-            temp:"-20~80℃",
-            pack:"Inner PE Bag; Carton 150Sets/CTN"
-        },
-        {
-            name:"Fruit Box",model:"HP-16",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"185,135,50",lidMm:"189,139,20",
-            matBase:"OPS",matLid:"PET anti-fog",
-            temp:"0~60℃",
-            pack:"Inner PE Bag; Carton 300Sets/CTN"
-        },
-        {
-            name:"Pasta Box",model:"HP-17",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Bagasse Products",
-            baseMm:"215,145,62",lidMm:"219,149,24",
-            matBase:"Bagasse",matLid:"Bagasse",
-            temp:"-18~120℃ Microwave OK",
-            pack:"Inner PE Bag; Carton 190Sets/CTN"
-        },
-        {
-            name:"Seafood Tray",model:"HP-18",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Party Trays",
-            baseMm:"340,240,45",lidMm:"344,244,22",
-            matBase:"PP",matLid:"PET",
-            temp:"-20~70℃",
-            pack:"Inner PE Bag; Carton 120Sets/CTN"
-        },
-        {
-            name:"Hot Food Box",model:"HP-19",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Bagasse Products",
-            baseMm:"225,150,68",lidMm:"229,154,26",
-            matBase:"Bagasse",matLid:"Bagasse",
-            temp:"-18~120℃ Microwave OK",
-            pack:"Inner PE Bag; Carton 170Sets/CTN"
-        },
-        {
-            name:"Buffet Tray",model:"HP-20",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Party Trays",
-            baseMm:"360,260,48",lidMm:"364,264,24",
-            matBase:"PP",matLid:"PET",
-            temp:"-20~70℃",
-            pack:"Inner PE Bag; Carton 100Sets/CTN"
-        },
-        {
-            name:"Deli Pack",model:"HP-21",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"195,140,54",lidMm:"199,144,22",
-            matBase:"OPS",matLid:"PET anti-fog",
-            temp:"5~60℃ Not microwave",
-            pack:"Inner PE Bag; Carton 240Sets/CTN"
-        },
-        {
-            name:"Oval Tray",model:"HP-22",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Party Trays",
-            baseMm:"280,180,38",lidMm:"284,184,16",
-            matBase:"PP",matLid:"PET",
-            temp:"-20~70℃",
-            pack:"Inner PE Bag; Carton 200Sets/CTN"
-        },
-        {
-            name:"Round Bowl",model:"HP-23",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
-            subcate:"Bagasse Products",
-            baseMm:"170,170,70",lidMm:"174,174,22",
-            matBase:"Bagasse",matLid:"Bagasse",
-            temp:"-18~120℃ Microwave OK",
-            pack:"Inner PE Bag; Carton 260Sets/CTN"
-        },
-        {
-            name:"Meat Tray",model:"HP-24",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",
-            subcate:"Plastic Sushi Container",
-            baseMm:"205,155,48",lidMm:"209,159,20",
-            matBase:"OPS",matLid:"PET anti-fog",
-            temp:"0~60℃",
-            pack:"Inner PE Bag; Carton 220Sets/CTN"
-        },
-        {
-            name:"Combo Pack",model:"HP-25",
-            img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",
-            subcate:"Paper Bags",
-            baseMm:"300,160,90",lidMm:"",
-            matBase:"Kraft Paper",matLid:"N/A",
-            temp:"Not for hot liquid",
-            pack:"Inner PE Bag; Carton 400Sets/CTN"
-        },
-    ]
-
+    let currentFilterMain = null;
+    let currentFilterSub = null;
     const itemsPerPage = 20;
     let currentPage = 1;
     let useInch = false;
-    let currentBaseMm, currentLidMm;
+
+    // 全部产品数据，每个子类目4个产品
+    const allProducts = [
+        // Plastic Containers
+        {name:"Plastic Sushi Box 01",model:"HP-PC-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Sushi Container",baseMm:"200,100,55",lidMm:"205,105,25",matBase:"OPS",matLid:"PET (anti-fog)",temp:"5℃ to 60℃ (Not microwave safe)",pack:"Inner: PE Bag; Outer: Carton, 300Sets/CTN"},
+        {name:"Plastic Sushi Box 02",model:"HP-PC-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Sushi Container",baseMm:"220,110,60",lidMm:"225,115,28",matBase:"OPS",matLid:"PET (anti-fog)",temp:"-20℃ to 100℃",pack:"Inner: PE Bag; Outer: Carton, 250Sets/CTN"},
+        {name:"Plastic Sushi Box 03",model:"HP-PC-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Sushi Container",baseMm:"180,90,50",lidMm:"185,95,22",matBase:"PP",matLid:"PP",temp:"-20℃ to 120℃ (Microwave safe)",pack:"Inner: PE Bag; Outer: Carton,350Sets/CTN"},
+        {name:"Plastic Sushi Box 04",model:"HP-PC-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Sushi Container",baseMm:"190,95,52",lidMm:"194,99,24",matBase:"PP",matLid:"PET",temp:"0~70℃",pack:"Inner PE Bag; Carton 320Sets/CTN"},
+
+        {name:"Plastic Party Tray 01",model:"HP-PPT-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Party Tray",baseMm:"300,200,40",lidMm:"305,205,18",matBase:"PP",matLid:"PET",temp:"-20℃ to 70℃",pack:"Inner: PE Bag; Outer: Carton,180Sets/CTN"},
+        {name:"Plastic Party Tray 02",model:"HP-PPT-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Party Tray",baseMm:"320,220,42",lidMm:"324,224,20",matBase:"PP",matLid:"PET",temp:"-20~80℃",pack:"Inner PE Bag; Carton 150Sets/CTN"},
+        {name:"Plastic Party Tray 03",model:"HP-PPT-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Party Tray",baseMm:"280,180,38",lidMm:"284,184,16",matBase:"PP",matLid:"PET",temp:"-20~70℃",pack:"Inner PE Bag; Carton 200Sets/CTN"},
+        {name:"Plastic Party Tray 04",model:"HP-PPT-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Party Tray",baseMm:"340,240,45",lidMm:"344,244,22",matBase:"PP",matLid:"PET",temp:"-20~70℃",pack:"Inner PE Bag; Carton 120Sets/CTN"},
+
+        {name:"Plastic Salad Container 01",model:"HP-PSC-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Salad Container",baseMm:"175,125,52",lidMm:"180,130,20",matBase:"OPS",matLid:"PET anti-fog",temp:"5~60℃ Not microwave",pack:"Inner PE Bag; Carton 320Sets/CTN"},
+        {name:"Plastic Salad Container 02",model:"HP-PSC-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Salad Container",baseMm:"185,135,50",lidMm:"189,139,20",matBase:"OPS",matLid:"PET anti-fog",temp:"0~60℃",pack:"Inner PE Bag; Carton 300Sets/CTN"},
+        {name:"Plastic Salad Container 03",model:"HP-PSC-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Salad Container",baseMm:"165,115,48",lidMm:"169,119,19",matBase:"OPS",matLid:"PET anti-fog",temp:"5~60℃",pack:"Inner PE Bag; Carton 360Sets/CTN"},
+        {name:"Plastic Salad Container 04",model:"HP-PSC-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Salad Container",baseMm:"170,120,50",lidMm:"174,124,20",matBase:"OPS",matLid:"PET anti-fog",temp:"0~60℃",pack:"Inner PE Bag; Carton 330Sets/CTN"},
+
+        {name:"Plastic Bento Box 01",model:"HP-PBB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Bento Box",baseMm:"210,140,60",lidMm:"215,145,24",matBase:"PP",matLid:"PP",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 220Sets/CTN"},
+        {name:"Plastic Bento Box 02",model:"HP-PBB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Bento Box",baseMm:"220,150,65",lidMm:"224,154,26",matBase:"PP",matLid:"PP",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 200Sets/CTN"},
+        {name:"Plastic Bento Box 03",model:"HP-PBB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Bento Box",baseMm:"200,130,58",lidMm:"204,134,22",matBase:"PP",matLid:"PP",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 240Sets/CTN"},
+        {name:"Plastic Bento Box 04",model:"HP-PBB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Bento Box",baseMm:"195,125,55",lidMm:"199,129,21",matBase:"PP",matLid:"PP",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 260Sets/CTN"},
+
+        {name:"Plastic Round Bowl 01",model:"HP-PRB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Round Bowl",baseMm:"160,160,65",lidMm:"165,165,20",matBase:"PP",matLid:"PET",temp:"0℃ to 70℃",pack:"Inner: PE Bag; Outer: Carton,400Sets/CTN"},
+        {name:"Plastic Round Bowl 02",model:"HP-PRB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Plastic Containers",subCate:"Plastic Round Bowl",baseMm:"170,170,70",lidMm:"174,174,22",matBase:"PP",matLid:"PET",temp:"0~70℃",pack:"Inner PE Bag; Carton 380Sets/CTN"},
+        {name:"Plastic Round Bowl 03",model:"HP-PRB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Plastic Containers",subCate:"Plastic Round Bowl",baseMm:"150,150,62",lidMm:"154,154,18",matBase:"PP",matLid:"PET",temp:"0~70℃",pack:"Inner PE Bag; Carton 420Sets/CTN"},
+        {name:"Plastic Round Bowl 04",model:"HP-PRB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Plastic Containers",subCate:"Plastic Round Bowl",baseMm:"155,155,64",lidMm:"159,159,19",matBase:"PP",matLid:"PET",temp:"0~70℃",pack:"Inner PE Bag; Carton 410Sets/CTN"},
+
+        // Paper Packaging
+        {name:"Kraft Paper Sushi Container 01",model:"HP-KPSC-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Sushi Container",baseMm:"190,120,55",lidMm:"195,125,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0℃ to 65℃",pack:"Inner: PE Bag; Outer: Carton,260Sets/CTN"},
+        {name:"Kraft Paper Sushi Container 02",model:"HP-KPSC-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Sushi Container",baseMm:"200,125,56",lidMm:"204,129,23",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 240Sets/CTN"},
+        {name:"Kraft Paper Sushi Container 03",model:"HP-KPSC-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Sushi Container",baseMm:"185,115,53",lidMm:"189,119,21",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 280Sets/CTN"},
+        {name:"Kraft Paper Sushi Container 04",model:"HP-KPSC-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Sushi Container",baseMm:"195,122,54",lidMm:"199,126,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 250Sets/CTN"},
+
+        {name:"Kraft Paper Salad Container 01",model:"HP-KPSD-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Salad Container",baseMm:"220,110,45",lidMm:"224,114,16",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 280Sets/CTN"},
+        {name:"Kraft Paper Salad Container 02",model:"HP-KPSD-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Salad Container",baseMm:"210,105,44",lidMm:"214,109,15",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 300Sets/CTN"},
+        {name:"Kraft Paper Salad Container 03",model:"HP-KPSD-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Salad Container",baseMm:"225,112,46",lidMm:"229,116,17",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 270Sets/CTN"},
+        {name:"Kraft Paper Salad Container 04",model:"HP-KPSD-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Salad Container",baseMm:"215,108,43",lidMm:"219,112,16",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 290Sets/CTN"},
+
+        {name:"Kraft Paper Bento Box 01",model:"HP-KPBB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Bento Box",baseMm:"200,130,65",lidMm:"204,134,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 200Sets/CTN"},
+        {name:"Kraft Paper Bento Box 02",model:"HP-KPBB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Bento Box",baseMm:"205,135,66",lidMm:"209,139,23",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 190Sets/CTN"},
+        {name:"Kraft Paper Bento Box 03",model:"HP-KPBB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Bento Box",baseMm:"195,128,63",lidMm:"199,132,21",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 210Sets/CTN"},
+        {name:"Kraft Paper Bento Box 04",model:"HP-KPBB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Bento Box",baseMm:"210,132,64",lidMm:"214,136,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 195Sets/CTN"},
+
+        {name:"Kraft Paper Round Bowl 01",model:"HP-KPRB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Round Bowl",baseMm:"170,170,70",lidMm:"174,174,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 260Sets/CTN"},
+        {name:"Kraft Paper Round Bowl 02",model:"HP-KPRB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Round Bowl",baseMm:"165,165,68",lidMm:"169,169,21",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 270Sets/CTN"},
+        {name:"Kraft Paper Round Bowl 03",model:"HP-KPRB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Round Bowl",baseMm:"175,175,72",lidMm:"179,179,23",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 250Sets/CTN"},
+        {name:"Kraft Paper Round Bowl 04",model:"HP-KPRB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Packaging",subCate:"Kraft Paper Round Bowl",baseMm:"160,160,66",lidMm:"164,164,20",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 280Sets/CTN"},
+
+        // Bagasse Products
+        {name:"Bagasse Sushi Container 01",model:"HP-BSC-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Sushi Container",baseMm:"200,100,55",lidMm:"205,105,25",matBase:"Bagasse",matLid:"Bagasse",temp:"-18℃ to 120℃ (Microwave safe)",pack:"Inner: PE Bag; Outer: Carton, 300Sets/CTN"},
+        {name:"Bagasse Sushi Container 02",model:"HP-BSC-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Sushi Container",baseMm:"220,110,60",lidMm:"225,115,28",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 250Sets/CTN"},
+        {name:"Bagasse Sushi Container 03",model:"HP-BSC-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Sushi Container",baseMm:"180,90,50",lidMm:"185,95,22",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 350Sets/CTN"},
+        {name:"Bagasse Sushi Container 04",model:"HP-BSC-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Sushi Container",baseMm:"190,95,52",lidMm:"194,99,24",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 320Sets/CTN"},
+
+        {name:"Bagasse Bento Box 01",model:"HP-BBB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Bento Box",baseMm:"210,140,60",lidMm:"215,145,24",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 220Sets/CTN"},
+        {name:"Bagasse Bento Box 02",model:"HP-BBB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Bento Box",baseMm:"220,150,65",lidMm:"224,154,26",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 200Sets/CTN"},
+        {name:"Bagasse Bento Box 03",model:"HP-BBB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Bento Box",baseMm:"200,130,58",lidMm:"204,134,22",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 240Sets/CTN"},
+        {name:"Bagasse Bento Box 04",model:"HP-BBB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Bagasse Products",subCate:"Bagasse Bento Box",baseMm:"195,125,55",lidMm:"199,129,21",matBase:"Bagasse",matLid:"Bagasse",temp:"-18~120℃ Microwave OK",pack:"Inner PE Bag; Carton 260Sets/CTN"},
+
+        // BBQ Packaging
+        {name:"Roast Chicken Box 01",model:"HP-RCB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"BBQ Packaging",subCate:"Roast Chicken Box",baseMm:"260,160,80",lidMm:"264,164,24",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 160Sets/CTN"},
+        {name:"Roast Chicken Box 02",model:"HP-RCB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"BBQ Packaging",subCate:"Roast Chicken Box",baseMm:"270,170,82",lidMm:"274,174,25",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 150Sets/CTN"},
+        {name:"Roast Chicken Box 03",model:"HP-RCB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"BBQ Packaging",subCate:"Roast Chicken Box",baseMm:"250,150,78",lidMm:"254,154,22",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 170Sets/CTN"},
+        {name:"Roast Chicken Box 04",model:"HP-RCB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"BBQ Packaging",subCate:"Roast Chicken Box",baseMm:"265,165,81",lidMm:"269,169,24",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 155Sets/CTN"},
+
+        {name:"Rib Box 01",model:"HP-RIB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"BBQ Packaging",subCate:"Rib Box",baseMm:"300,140,60",lidMm:"304,144,20",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 180Sets/CTN"},
+        {name:"Rib Box 02",model:"HP-RIB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"BBQ Packaging",subCate:"Rib Box",baseMm:"310,145,62",lidMm:"314,149,21",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 170Sets/CTN"},
+        {name:"Rib Box 03",model:"HP-RIB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"BBQ Packaging",subCate:"Rib Box",baseMm:"290,135,58",lidMm:"294,139,19",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 190Sets/CTN"},
+        {name:"Rib Box 04",model:"HP-RIB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"BBQ Packaging",subCate:"Rib Box",baseMm:"305,142,61",lidMm:"309,146,20",matBase:"Kraft Paper",matLid:"Paper",temp:"0~65℃",pack:"Inner PE Bag; Carton 175Sets/CTN"},
+
+        // Paper Bags
+        {name:"Standard Kraft Paper Bag 01",model:"HP-SKPB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Bags",subCate:"Standard Kraft Paper Bag",baseMm:"260,140,80",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 500Sets/CTN"},
+        {name:"Standard Kraft Paper Bag 02",model:"HP-SKPB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Bags",subCate:"Standard Kraft Paper Bag",baseMm:"270,145,82",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 480Sets/CTN"},
+        {name:"Standard Kraft Paper Bag 03",model:"HP-SKPB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Bags",subCate:"Standard Kraft Paper Bag",baseMm:"250,135,78",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 520Sets/CTN"},
+        {name:"Standard Kraft Paper Bag 04",model:"HP-SKPB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Bags",subCate:"Standard Kraft Paper Bag",baseMm:"265,142,81",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 490Sets/CTN"},
+
+        {name:"Custom Size Paper Bag 01",model:"HP-CSPB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Bags",subCate:"Custom Size Paper Bag",baseMm:"300,160,90",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 400Sets/CTN"},
+        {name:"Custom Size Paper Bag 02",model:"HP-CSPB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Bags",subCate:"Custom Size Paper Bag",baseMm:"310,165,92",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 380Sets/CTN"},
+        {name:"Custom Size Paper Bag 03",model:"HP-CSPB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Bags",subCate:"Custom Size Paper Bag",baseMm:"290,155,88",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 420Sets/CTN"},
+        {name:"Custom Size Paper Bag 04",model:"HP-CSPB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Bags",subCate:"Custom Size Paper Bag",baseMm:"305,162,91",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 390Sets/CTN"},
+
+        {name:"Baking Bag 01",model:"HP-BKB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Bags",subCate:"Baking Bag",baseMm:"240,120,70",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 550Sets/CTN"},
+        {name:"Baking Bag 02",model:"HP-BKB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Paper Bags",subCate:"Baking Bag",baseMm:"250,125,72",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 530Sets/CTN"},
+        {name:"Baking Bag 03",model:"HP-BKB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Paper Bags",subCate:"Baking Bag",baseMm:"230,115,68",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 570Sets/CTN"},
+        {name:"Baking Bag 04",model:"HP-BKB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Paper Bags",subCate:"Baking Bag",baseMm:"245,122,71",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Not for hot liquid",pack:"Inner PE Bag; Carton 540Sets/CTN"},
+
+        // Catering Accessories
+        {name:"Sauce Cup 01",model:"HP-SC-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Sauce Cup",baseMm:"60,60,40",lidMm:"62,62,12",matBase:"PP",matLid:"PP",temp:"-10℃ to 80℃",pack:"Inner: PE Bag; Outer: Carton,1000Sets/CTN"},
+        {name:"Sauce Cup 02",model:"HP-SC-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Sauce Cup",baseMm:"65,65,42",lidMm:"67,67,13",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 950Sets/CTN"},
+        {name:"Sauce Cup 03",model:"HP-SC-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Sauce Cup",baseMm:"58,58,38",lidMm:"60,60,11",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 1050Sets/CTN"},
+        {name:"Sauce Cup 04",model:"HP-SC-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Sauce Cup",baseMm:"62,62,41",lidMm:"64,64,12",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 980Sets/CTN"},
+
+        {name:"Sauce Bottle 01",model:"HP-SB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Sauce Bottle",baseMm:"70,70,120",lidMm:"72,72,15",matBase:"PP",matLid:"PP",temp:"-10℃ to 80℃",pack:"Inner: PE Bag; Outer: Carton,800Sets/CTN"},
+        {name:"Sauce Bottle 02",model:"HP-SB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Sauce Bottle",baseMm:"75,75,125",lidMm:"77,77,16",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 750Sets/CTN"},
+        {name:"Sauce Bottle 03",model:"HP-SB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Sauce Bottle",baseMm:"68,68,115",lidMm:"70,70,14",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 850Sets/CTN"},
+        {name:"Sauce Bottle 04",model:"HP-SB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Sauce Bottle",baseMm:"72,72,122",lidMm:"74,74,15",matBase:"PP",matLid:"PP",temp:"-10~80℃",pack:"Inner PE Bag; Carton 780Sets/CTN"},
+
+        {name:"Knife&Fork 01",model:"HP-KF-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Knife&Fork",baseMm:"180,20,2",lidMm:"",matBase:"PP",matLid:"N/A",temp:"-20~80℃",pack:"Inner PE Bag; Carton 5000Sets/CTN"},
+        {name:"Knife&Fork 02",model:"HP-KF-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Knife&Fork",baseMm:"190,22,2",lidMm:"",matBase:"PP",matLid:"N/A",temp:"-20~80℃",pack:"Inner PE Bag; Carton 4800Sets/CTN"},
+        {name:"Knife&Fork 03",model:"HP-KF-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Knife&Fork",baseMm:"175,18,2",lidMm:"",matBase:"PP",matLid:"N/A",temp:"-20~80℃",pack:"Inner PE Bag; Carton 5200Sets/CTN"},
+        {name:"Knife&Fork 04",model:"HP-KF-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Knife&Fork",baseMm:"185,21,2",lidMm:"",matBase:"PP",matLid:"N/A",temp:"-20~80℃",pack:"Inner PE Bag; Carton 4900Sets/CTN"},
+
+        {name:"Sticker 01",model:"HP-ST-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Sticker",baseMm:"100,50,0.1",lidMm:"",matBase:"Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 10000Sets/CTN"},
+        {name:"Sticker 02",model:"HP-ST-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Sticker",baseMm:"110,55,0.1",lidMm:"",matBase:"Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 9500Sets/CTN"},
+        {name:"Sticker 03",model:"HP-ST-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Sticker",baseMm:"95,48,0.1",lidMm:"",matBase:"Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 10500Sets/CTN"},
+        {name:"Sticker 04",model:"HP-ST-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Sticker",baseMm:"105,52,0.1",lidMm:"",matBase:"Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 9800Sets/CTN"},
+
+        {name:"Paper Belt 01",model:"HP-PB-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Paper Belt",baseMm:"250,30,0.3",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 8000Sets/CTN"},
+        {name:"Paper Belt 02",model:"HP-PB-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg",mainCate:"Catering Accessories",subCate:"Paper Belt",baseMm:"260,32,0.3",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 7800Sets/CTN"},
+        {name:"Paper Belt 03",model:"HP-PB-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",mainCate:"Catering Accessories",subCate:"Paper Belt",baseMm:"240,28,0.3",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 8200Sets/CTN"},
+        {name:"Paper Belt 04",model:"HP-PB-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg",mainCate:"Catering Accessories",subCate:"Paper Belt",baseMm:"255,31,0.3",lidMm:"",matBase:"Kraft Paper",matLid:"N/A",temp:"Room temperature",pack:"Inner PE Bag; Carton 7900Sets/CTN"},
+    ]
 
     // mm转英寸
     function mm2inch(mm){
@@ -672,8 +551,8 @@ document.addEventListener('DOMContentLoaded',function(){
         return Number(inch.toFixed(1));
     }
     function renderDetailText(item){
-        currentBaseMm = item.baseMm.split(',').map(Number);
-        currentLidMm = item.lidMm ? item.lidMm.split(',').map(Number) : [];
+        let currentBaseMm = item.baseMm.split(',').map(Number);
+        let currentLidMm = item.lidMm ? item.lidMm.split(',').map(Number) : [];
         let b1 = currentBaseMm[0],b2=currentBaseMm[1],b3=currentBaseMm[2];
         let l1 = currentLidMm[0],l2=currentLidMm[1],l3=currentLidMm[2];
         if(useInch){
@@ -687,8 +566,10 @@ document.addEventListener('DOMContentLoaded',function(){
         detailWrap.innerHTML = `
             <div class="close-detail" onclick="closeDetail()">×</div>
             <img class="detail-img" src="${item.img}" alt="${item.name}">
-            <div class="detail-row"><strong>Category:</strong><span>${item.subcate}</span></div>
-            <div class="detail-row"><strong>Item Name:</strong><span>${item.model}</span></div>
+            <div class="detail-row"><strong>Main Category:</strong><span>${item.mainCate}</span></div>
+            <div class="detail-row"><strong>Sub Category:</strong><span>${item.subCate}</span></div>
+            <div class="detail-row"><strong>Item Name:</strong><span>${item.name}</span></div>
+            <div class="detail-row"><strong>Model:</strong><span>${item.model}</span></div>
             <div class="detail-row">
                 <strong>Size：</strong>
                 <span>Base：${b1}*${b2}*${b3} ${useInch?'in':'mm'}</span>
@@ -718,13 +599,69 @@ document.addEventListener('DOMContentLoaded',function(){
         },300)
     }
 
-    //渲染产品卡片
-    function renderProducts(pageNum){
+    //关闭详情面板
+    window.closeDetail = function(){
+        detailPanel.classList.remove('open');
+        detailWrap.classList.remove('show');
+    }
+
+    //点击主类目
+    window.toggleMain = function(el, mainCateName){
+        //清除所有激活状态
+        document.querySelectorAll(".category-main").forEach(item=>item.classList.remove('active'));
+        document.querySelectorAll(".sub-category").forEach(sub=>sub.classList.remove('open'));
+        document.querySelectorAll(".sub-category a").forEach(link=>link.classList.remove('active'));
+
+        //激活当前主类目
+        el.classList.add('active');
+        el.nextElementSibling.classList.add('open');
+        el.querySelector('.arrow').classList.add('rotate');
+
+        //设置筛选：主类目，展示该主类目全部产品
+        currentFilterMain = mainCateName;
+        currentFilterSub = null;
+        currentPage = 1;
+        renderProducts();
+    }
+
+    //点击子类目
+    window.toggleSubCat = function(el, subCateName){
+        //清除所有子类目高亮
+        document.querySelectorAll(".sub-category a").forEach(link=>link.classList.remove('active'));
+        el.classList.add('active');
+
+        //拿到父主类目
+        const parentItem = el.closest(".category-item");
+        const mainTitle = parentItem.querySelector(".category-main").querySelector("span").innerText;
+        //主类目保持激活+展开
+        document.querySelectorAll(".category-main").forEach(item=>item.classList.remove('active'));
+        document.querySelectorAll(".sub-category").forEach(sub=>sub.classList.remove('open'));
+        parentItem.querySelector(".category-main").classList.add('active');
+        parentItem.querySelector(".sub-category").classList.add('open');
+        parentItem.querySelector(".arrow").classList.add('rotate');
+
+        //筛选：只展示当前子类目产品
+        currentFilterMain = mainTitle;
+        currentFilterSub = subCateName;
+        currentPage = 1;
+        renderProducts();
+    }
+
+    //渲染产品
+    function renderProducts(){
         const grid = document.getElementById("productGrid");
         grid.innerHTML = "";
-        const start = (pageNum-1)*itemsPerPage;
+        //筛选逻辑
+        let filtered = [...allProducts];
+        if(currentFilterSub){
+            filtered = filtered.filter(p=>p.subCate === currentFilterSub);
+        }else if(currentFilterMain){
+            filtered = filtered.filter(p=>p.mainCate === currentFilterMain);
+        }
+
+        const start = (currentPage-1)*itemsPerPage;
         const end = start + itemsPerPage;
-        const pageProducts = allProducts.slice(start,end);
+        const pageProducts = filtered.slice(start,end);
 
         for(let i=0;i<pageProducts.length;i+=2){
             const rowWrap = document.createElement('div');
@@ -756,28 +693,29 @@ document.addEventListener('DOMContentLoaded',function(){
                 card.classList.add('show');
             })
         },100)
-        renderPagination();
+        renderPagination(filtered.length);
     }
 
     //渲染分页
-    function renderPagination(){
-        const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+    function renderPagination(totalItemCount){
+        const totalPages = Math.ceil(totalItemCount / itemsPerPage);
         const paginationBox = document.getElementById("paginationBox");
         paginationBox.innerHTML = "";
+        if(totalPages <=1) return;
         for(let i=1;i<=totalPages;i++){
             const btn = document.createElement('button');
             btn.className = "page-btn"+(i===currentPage?" active":"");
             btn.textContent = i;
             btn.onclick = ()=>{
                 currentPage = i;
-                renderProducts(currentPage);
+                renderProducts();
             }
             paginationBox.appendChild(btn);
         }
     }
 
-    //页面加载执行
-    renderProducts(currentPage);
+    //页面加载，默认展示全部产品，无任何类目高亮
+    renderProducts();
 })
 </script>
 </body>
