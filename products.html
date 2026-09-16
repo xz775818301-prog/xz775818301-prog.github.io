@@ -28,6 +28,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .nav-logo img {
             width: 240px;
@@ -125,7 +126,7 @@
             padding:40px 50px;
             position:relative;
         }
-        /* 顶部产品详情预览模块 */
+        /* 顶部产品预览模块 */
         .product-top-preview{
             display:flex;
             gap:40px;
@@ -180,14 +181,12 @@
             background:#004924;
         }
 
-        /* 一行3列产品网格 */
-        .product-grid{
+        /* 一行3个产品行容器【修复：取消display:contents】 */
+        .product-row{
             display:grid;
             grid-template-columns: repeat(3,1fr);
             gap:36px;
-        }
-        .product-row{
-            display:contents;
+            margin-bottom:36px;
         }
         .product-card{
             opacity:0;
@@ -225,12 +224,12 @@
             opacity:0.15;
             pointer-events:none;
         }
-        /* 只有B/C点击才左移到A位置，A点击不动 */
+        /* B/C点击左移到A位置 */
         .product-card.active-card.move-left{
             transform: translateX(calc(-100% - 36px));
         }
 
-        /* 产品详情面板【重写排版，按钮放在Lid后面】 */
+        /* 产品详情面板【排版，按钮放在Lid后面】 */
         .product-detail-panel{
             position:absolute;
             top:0;
@@ -305,7 +304,7 @@
 
         /* 移动端适配 */
         @media (max-width:992px){
-            .product-grid{
+            .product-row{
                 grid-template-columns: repeat(2,1fr);
             }
             .product-card.active-card.move-left{
@@ -331,7 +330,7 @@
             .preview-img-box,.preview-info{
                 width:100%;
             }
-            .product-grid{
+            .product-row{
                 grid-template-columns:1fr;
             }
             nav{
@@ -459,8 +458,7 @@
         </div>
 
         <!--产品卡片网格容器-->
-        <div class="product-grid" id="productGrid">
-            <!--JS动态渲染产品卡片-->
+        <div id="productGrid">
         </div>
 
         <!--分页按钮-->
