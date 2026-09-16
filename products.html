@@ -51,7 +51,7 @@
             color:#009E49;
         }
 
-        /* 产品页面主体 三栏布局：左侧类目 + 中间产品列表 + 右侧详情 */
+        /* 产品页面主体 */
         .product-page-wrap{
             display:flex;
         }
@@ -121,10 +121,11 @@
             transform:rotate(180deg);
         }
 
-        /* 中间产品区域 */
+        /* 中间产品区域，默认占72%宽度，关闭详情时占满 */
         .product-middle{
-            width:45%;
+            flex:1;
             padding:40px 30px;
+            transition: all 0.5s ease;
         }
         /* 产品网格 */
         .product-row{
@@ -189,21 +190,49 @@
             background:#edf7ee;
         }
 
-        /* ========== 右侧详情面板（跟随页面滚动，不是弹窗） ========== */
+        /* ========== 右侧详情面板：初始完全隐藏，无占位 ========== */
         .detail-right-panel{
+            width:0;
+            overflow:hidden;
+            transition: width 0.5s ease;
+            border-left:1px solid #eee;
+        }
+        .detail-right-panel.open{
             width:27%;
             padding:40px 20px;
             position:sticky;
             top:100px;
             height:calc(100vh - 100px);
             overflow-y:auto;
-            border-left:1px solid #eee;
         }
-        .detail-empty-tip{
-            color:#888;
-            font-size:18px;
-            text-align:center;
-            margin-top:80px;
+        /* 关闭按钮 */
+        .close-detail{
+            position:absolute;
+            top:12px;
+            right:20px;
+            font-size:28px;
+            cursor:pointer;
+            color:#333;
+            width:36px;
+            height:36px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            transition:0.3s;
+        }
+        .close-detail:hover{
+            background:#eee;
+        }
+        .detail-wrap{
+            position:relative;
+            opacity:0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .detail-wrap.show{
+            opacity:1;
+            transform: translateY(0);
         }
         .detail-row{
             margin-bottom:16px;
@@ -240,17 +269,18 @@
             .product-page-wrap{
                 flex-direction:column;
             }
-            .sidebar-left,.product-middle,.detail-right-panel{
+            .sidebar-left,.product-middle{
                 width:100%;
                 position:static;
                 height:auto;
             }
             .detail-right-panel{
+                width:100% !important;
                 border-left:none;
                 border-top:1px solid #eee;
             }
-            .product-row{
-                grid-template-columns:repeat(2,1fr);
+            .detail-right-panel.open{
+                width:100%;
             }
             nav{
                 height:auto;
@@ -374,9 +404,11 @@
         </div>
     </div>
 
-    <!--右侧详情面板，sticky跟随滚动 -->
+    <!--右侧详情面板，初始宽度0，完全隐藏无占位 -->
     <div class="detail-right-panel" id="detailPanel">
-        <div class="detail-empty-tip">Click product card to view details</div>
+        <div class="detail-wrap" id="detailWrap">
+            <div class="close-detail" onclick="closeDetail()">×</div>
+        </div>
     </div>
 </div>
 
@@ -390,6 +422,15 @@ document.addEventListener('DOMContentLoaded',function(){
         arrow.classList.toggle('rotate');
     }
     window.toggleSub = toggleSub;
+
+    const detailPanel = document.getElementById('detailPanel');
+    const detailWrap = document.getElementById('detailWrap');
+
+    //关闭详情面板
+    window.closeDetail = function(){
+        detailPanel.classList.remove('open');
+        detailWrap.classList.remove('show');
+    }
 
     // 产品基础数据
     const allProducts = [
@@ -624,7 +665,6 @@ document.addEventListener('DOMContentLoaded',function(){
     let currentPage = 1;
     let useInch = false;
     let currentBaseMm, currentLidMm;
-    const detailPanel = document.getElementById('detailPanel');
 
     // mm转英寸
     function mm2inch(mm){
@@ -644,7 +684,8 @@ document.addEventListener('DOMContentLoaded',function(){
             unitBtnText = "Convert to in";
         }
         let lidSizeText = l1 ? `Lid: ${l1}*${l2}*${l3} ${useInch?'in':'mm'}` : "Lid: N/A";
-        detailPanel.innerHTML = `
+        detailWrap.innerHTML = `
+            <div class="close-detail" onclick="closeDetail()">×</div>
             <img class="detail-img" src="${item.img}" alt="${item.name}">
             <div class="detail-row"><strong>Category:</strong><span>${item.subcate}</span></div>
             <div class="detail-row"><strong>Item Name:</strong><span>${item.model}</span></div>
@@ -665,10 +706,16 @@ document.addEventListener('DOMContentLoaded',function(){
             <div class="detail-row"><strong>Packing:</strong><span>${item.pack}</span></div>
         `
         //绑定单位切换按钮事件
-        detailPanel.querySelector('.unit-toggle-btn').onclick = function(){
+        detailWrap.querySelector('.unit-toggle-btn').onclick = function(){
             useInch = !useInch;
             renderDetailText(item);
         }
+        //打开右侧面板
+        detailPanel.classList.add('open');
+        //延迟触发文字浮现动画
+        setTimeout(()=>{
+            detailWrap.classList.add('show');
+        },300)
     }
 
     //渲染产品卡片
