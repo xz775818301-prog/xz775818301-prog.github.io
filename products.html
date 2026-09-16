@@ -180,7 +180,7 @@
             background:#004924;
         }
 
-        /* ========== 修改：一行3列产品网格 ========== */
+        /* 一行3列产品网格 */
         .product-grid{
             display:grid;
             grid-template-columns: repeat(3,1fr);
@@ -220,7 +220,7 @@
             color:#555;
             font-size:16px;
         }
-        /* 点击交互样式：同行卡片渐隐，选中卡片左滑 */
+        /* 同行卡片渐隐效果 */
         .product-row.fade-siblings .product-card:not(.active-card){
             opacity:0.15;
             pointer-events:none;
@@ -229,7 +229,7 @@
             transform:translateX(-180px);
         }
 
-        /* ========== 新增产品详情侧滑面板 ========== */
+        /* 产品详情侧滑面板【重写排版】 */
         .product-detail-panel{
             position:fixed;
             top:120px;
@@ -256,6 +256,7 @@
         .detail-row{
             margin-bottom:16px;
             line-height:1.7;
+            font-size:18px;
         }
         .detail-row strong{
             color:#222;
@@ -464,17 +465,24 @@
         <div class="pagination" id="paginationBox">
         </div>
 
-        <!-- ========== 新增产品详情面板 ========== -->
+        <!-- 产品详情面板【排版更新】 -->
         <div class="product-detail-panel">
             <span class="detail-close">×</span>
             <div class="detail-row"><strong>Category:</strong><span id="det-cate"></span></div>
             <div class="detail-row"><strong>Item Name:</strong><span id="det-item"></span></div>
             <div class="detail-row">
                 <strong>Size：</strong>
-                <span id="det-size-text"></span>
+                <span id="det-size-base"></span>
                 <button class="unit-toggle-btn">Convert to in</button>
+                <br>
+                <span style="margin-left:110px;" id="det-size-lid"></span>
             </div>
-            <div class="detail-row"><strong>Material:</strong><span id="det-mat"></span></div>
+            <div class="detail-row">
+                <strong>Material:</strong>
+                <span id="det-mat-base"></span>
+                <br>
+                <span style="margin-left:110px;" id="det-mat-lid"></span>
+            </div>
             <div class="detail-row"><strong>Temperature:</strong><span id="det-temp"></span></div>
             <div class="detail-row"><strong>Packing:</strong><span id="det-pack"></span></div>
         </div>
@@ -638,7 +646,7 @@ const allProducts = [
     },
     {
         name:"Pasta Box",model:"HP-17",
-        img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
+        img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg",
         subcate:"Bagasse Products",
         baseMm:"215,145,62",lidMm:"219,149,24",
         matBase:"Bagasse",matLid:"Bagasse",
@@ -740,10 +748,11 @@ function renderSizeText(){
     }else{
         document.querySelector('.unit-toggle-btn').innerText="Convert to in";
     }
+    document.getElementById('det-size-base').innerText = `Base：${b1}*${b2}*${b3}${useInch?'in':'mm'}`;
     if(l1){
-        document.getElementById('det-size-text').innerText = `Base：${b1}*${b2}*${b3}${useInch?'in':'mm'}, Lid: ${l1}*${l2}*${l3}${useInch?'in':'mm'}`;
+        document.getElementById('det-size-lid').innerText = `Lid: ${l1}*${l2}*${l3}${useInch?'in':'mm'}`;
     }else{
-        document.getElementById('det-size-text').innerText = `Base：${b1}*${b2}*${b3}${useInch?'in':'mm'}, Lid: N/A`;
+        document.getElementById('det-size-lid').innerText = `Lid: N/A`;
     }
 }
 
@@ -776,7 +785,7 @@ function renderProducts(pageNum){
                     <div class="model">Model: ${item.model}</div>
                 </div>
             `
-            // 点击卡片事件
+            // 点击卡片事件【修复：点击哪个卡片，哪个卡片左移】
             card.onclick = function(){
                 // 清除旧状态
                 document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
@@ -791,7 +800,8 @@ function renderProducts(pageNum){
                 document.getElementById('det-item').innerText = item.model;
                 currentBaseMm = item.baseMm.split(',').map(Number);
                 currentLidMm = item.lidMm ? item.lidMm.split(',').map(Number) : [];
-                document.getElementById('det-mat').innerText = `Base：${item.matBase}，Lid：${item.matLid}`;
+                document.getElementById('det-mat-base').innerText = `Base：${item.matBase}`;
+                document.getElementById('det-mat-lid').innerText = `Lid：${item.matLid}`;
                 document.getElementById('det-temp').innerText = item.temp;
                 document.getElementById('det-pack').innerText = item.pack;
                 useInch = false;
