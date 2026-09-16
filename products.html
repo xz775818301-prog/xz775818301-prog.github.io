@@ -182,7 +182,7 @@
             background:#004924;
         }
 
-        /* 一行3个产品行容器【修复：取消display:contents】 */
+        /* 产品网格 */
         .product-row{
             display:grid;
             grid-template-columns: repeat(3,1fr);
@@ -220,39 +220,35 @@
             color:#555;
             font-size:16px;
         }
-        /* 同行卡片渐隐效果 */
-        .product-row.fade-siblings .product-card:not(.active-card){
-            opacity:0.15;
-            pointer-events:none;
-        }
-        /* B/C点击左移到A位置 */
-        .product-card.active-card.move-left{
-            transform: translateX(calc(-100% - 36px));
-        }
 
-        /* 产品详情面板【排版，按钮放在Lid后面】 */
-        .product-detail-panel{
-            position:absolute;
+        /* ========== 新版弹窗详情面板（浮层，不占用页面布局） ========== */
+        .product-modal-overlay{
+            position:fixed;
             top:0;
-            right:0;
-            width:calc(200% + 72px);
+            left:0;
+            width:100%;
             height:100%;
-            background:#fff;
-            box-shadow:-5px 0 25px rgba(0,0,0,0.12);
-            border-radius:16px 0 0 16px;
-            padding:32px;
-            transition:right 0.6s ease;
-            z-index:900;
-            right: -120%;
+            background:rgba(0,0,0,0.45);
+            z-index:1000;
+            display:none;
+            align-items:center;
+            justify-content:center;
         }
-        .product-detail-panel.show{
-            right: calc(-100% - 36px);
+        .product-modal-overlay.show{
+            display:flex;
+        }
+        .product-detail-panel{
+            background:#ffffff;
+            width:520px;
+            border-radius:14px;
+            padding:36px;
+            position:relative;
         }
         .detail-close{
             position:absolute;
-            top:20px;
-            right:24px;
-            font-size:28px;
+            top:16px;
+            right:20px;
+            font-size:30px;
             cursor:pointer;
             color:#666;
         }
@@ -260,6 +256,7 @@
             margin-bottom:16px;
             line-height:1.7;
             font-size:18px;
+            text-align:left;
         }
         .detail-row strong{
             color:#222;
@@ -309,13 +306,6 @@
             .product-row{
                 grid-template-columns: repeat(2,1fr);
             }
-            .product-card.active-card.move-left{
-                transform:none;
-            }
-            .product-detail-panel{
-                width:100%;
-                right:-100%;
-            }
         }
         @media (max-width:768px){
             .product-page-wrap{
@@ -344,6 +334,9 @@
                 margin-right:0;
                 margin-top:16px;
                 gap:20px;
+            }
+            .product-detail-panel{
+                width:90%;
             }
         }
     </style>
@@ -466,33 +459,34 @@
         <!--分页按钮-->
         <div class="pagination" id="paginationBox">
         </div>
+    </div>
+</div>
 
-        <!-- 产品详情面板【排版更新：按钮放在Lid后面】 -->
-        <div class="product-detail-panel">
-            <span class="detail-close">×</span>
-            <div class="detail-row"><strong>Category:</strong><span id="det-cate"></span></div>
-            <div class="detail-row"><strong>Item Name:</strong><span id="det-item"></span></div>
-            <div class="detail-row">
-                <strong>Size：</strong>
-                <span id="det-size-base"></span>
-                <br>
-                <span style="margin-left:110px;" id="det-size-lid"></span>
-                <button class="unit-toggle-btn">Convert to in</button>
-            </div>
-            <div class="detail-row">
-                <strong>Material:</strong>
-                <span id="det-mat-base"></span>
-                <br>
-                <span style="margin-left:110px;" id="det-mat-lid"></span>
-            </div>
-            <div class="detail-row"><strong>Temperature:</strong><span id="det-temp"></span></div>
-            <div class="detail-row"><strong>Packing:</strong><span id="det-pack"></span></div>
+<!-- 产品详情弹窗浮层（新版） -->
+<div class="product-modal-overlay" id="modalOverlay">
+    <div class="product-detail-panel">
+        <span class="detail-close">×</span>
+        <div class="detail-row"><strong>Category:</strong><span id="det-cate"></span></div>
+        <div class="detail-row"><strong>Item Name:</strong><span id="det-item"></span></div>
+        <div class="detail-row">
+            <strong>Size：</strong>
+            <span id="det-size-base"></span>
+            <br>
+            <span style="margin-left:110px;" id="det-size-lid"></span>
+            <button class="unit-toggle-btn">Convert to in</button>
         </div>
+        <div class="detail-row">
+            <strong>Material:</strong>
+            <span id="det-mat-base"></span>
+            <br>
+            <span style="margin-left:110px;" id="det-mat-lid"></span>
+        </div>
+        <div class="detail-row"><strong>Temperature:</strong><span id="det-temp"></span></div>
+        <div class="detail-row"><strong>Packing:</strong><span id="det-pack"></span></div>
     </div>
 </div>
 
 <script>
-// 所有JS全部放到页面DOM加载完成后执行
 document.addEventListener('DOMContentLoaded',function(){
     // 控制侧边栏子类目展开收起
     function toggleSub(el){
@@ -503,7 +497,7 @@ document.addEventListener('DOMContentLoaded',function(){
     }
     window.toggleSub = toggleSub;
 
-    // 产品基础数据，增加规格参数
+    // 产品基础数据
     const allProducts = [
         {
             name:"Box Set",model:"HP-01",
@@ -736,8 +730,9 @@ document.addEventListener('DOMContentLoaded',function(){
     let currentPage = 1;
     let useInch = false;
     let currentBaseMm, currentLidMm;
+    const modalOverlay = document.getElementById('modalOverlay');
 
-    // mm转英寸，保留1位小数，四舍五入
+    // mm转英寸
     function mm2inch(mm){
         const inch = mm * 0.03937;
         return Number(inch.toFixed(1));
@@ -775,12 +770,11 @@ document.addEventListener('DOMContentLoaded',function(){
         const end = start + itemsPerPage;
         const pageProducts = allProducts.slice(start,end);
 
-        // 每3个产品包装为一行product-row
         for(let i=0;i<pageProducts.length;i+=3){
             const rowWrap = document.createElement('div');
             rowWrap.className = "product-row";
             const rowItems = pageProducts.slice(i,i+3);
-            rowItems.forEach((item,idx)=>{
+            rowItems.forEach((item)=>{
                 const card = document.createElement('div');
                 card.className="product-card";
                 card.innerHTML = `
@@ -790,21 +784,8 @@ document.addEventListener('DOMContentLoaded',function(){
                         <div class="model">Model: ${item.model}</div>
                     </div>
                 `
-                // 点击卡片事件【匹配截图逻辑】
+                //点击卡片打开弹窗
                 card.onclick = function(){
-                    // 清除旧状态
-                    document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
-                    document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
-                    // 当前行
-                    const row = this.closest('.product-row');
-                    row.classList.add('fade-siblings');
-                    this.classList.add('active-card');
-                    // 如果是B或者C，增加左移class；A不移动
-                    if(idx !==0){
-                        this.classList.add('move-left');
-                    }
-
-                    // 填充详情面板
                     document.getElementById('det-cate').innerText = item.subcate;
                     document.getElementById('det-item').innerText = item.model;
                     currentBaseMm = item.baseMm.split(',').map(Number);
@@ -815,14 +796,14 @@ document.addEventListener('DOMContentLoaded',function(){
                     document.getElementById('det-pack').innerText = item.pack;
                     useInch = false;
                     renderSizeText();
-                    document.querySelector('.product-detail-panel').classList.add('show');
+                    modalOverlay.classList.add('show');
                 }
                 rowWrap.appendChild(card);
             })
             grid.appendChild(rowWrap);
         }
 
-        //卡片渐入上浮动画
+        //卡片上浮动画
         setTimeout(()=>{
             document.querySelectorAll('.product-card').forEach(card=>{
                 card.classList.add('show');
@@ -831,11 +812,14 @@ document.addEventListener('DOMContentLoaded',function(){
         renderPagination();
     }
 
-    //关闭详情面板
+    //关闭弹窗：点击× 或者点击背景遮罩
     document.querySelector('.detail-close').addEventListener('click',()=>{
-        document.querySelector('.product-detail-panel').classList.remove('show');
-        document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
-        document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
+        modalOverlay.classList.remove('show');
+    })
+    modalOverlay.addEventListener('click',(e)=>{
+        if(e.target === modalOverlay){
+            modalOverlay.classList.remove('show');
+        }
     })
 
     //渲染分页
@@ -850,10 +834,7 @@ document.addEventListener('DOMContentLoaded',function(){
             btn.onclick = ()=>{
                 currentPage = i;
                 renderProducts(currentPage);
-                //关闭详情面板，切换分页重置状态
-                document.querySelector('.product-detail-panel').classList.remove('show');
-                document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card','move-left'));
-                document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
+                modalOverlay.classList.remove('show');
             }
             paginationBox.appendChild(btn);
         }
