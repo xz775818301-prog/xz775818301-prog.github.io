@@ -4,486 +4,491 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmony Pack | Products</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.png">
+    <!-- favicon -->
+    <link rel="icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/favicon.ico" type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Microsoft YaHei",sans-serif;
         }
-        body {
-            margin: 0;
-            padding: 0;
+        :root{
+            --green:#009E49;
+            --darkgreen:#006633;
+            --light-green:#f7fbf8;
         }
-        /* 全站统一导航栏 */
-        nav {
-            height: 100px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 50px;
-            position: sticky;
-            top: 0;
-            z-index: 999;
+        /* 导航栏 和全站保持一致 */
+        nav{
+            height:100px;
+            background:#ffffff;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 50px 0 50px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+            position:sticky;
+            top:0;
+            z-index:999;
         }
-        .nav-logo img {
-            width: 240px;
-            height: 100px;
-            object-fit: contain;
+        .logo img{
+            height:100px;
         }
-        .nav-menu {
-            display: flex;
-            gap: 48px;
-            margin-right: 100px;
+        .nav-menu{
+            display:flex;
+            gap:48px;
+            margin-right:100px;
         }
-        .nav-menu a {
-            font-size: 20px;
-            font-weight: bold;
-            color: #006633;
-            text-decoration: none;
+        .nav-menu a{
+            font-size:20px;
+            font-weight:bold;
+            color:#009E49;
+            text-decoration:none;
+            transition:0.3s;
         }
         .nav-menu a.active{
-            color:#009E49;
+            color:var(--darkgreen);
+        }
+        .nav-menu a:hover{
+            color:var(--darkgreen);
         }
 
-        /* 产品页面主体 左右布局 */
-        .product-page-wrap{
+        /* 页面主体布局：左侧分类 + 右侧产品区 */
+        .product-wrap{
             display:flex;
+            max-width:1600px;
+            margin:0 auto;
+            padding:60px 20px;
+            gap:40px;
         }
-        /* 左侧固定分类侧边栏 */
-        .sidebar-left{
-            width:28%;
-            min-height: calc(100vh - 100px);
-            background:#006633;
-            color:#fff;
-            padding:40px 30px;
+        /* 左侧固定分类栏 */
+        .sidebar-cate{
+            width:280px;
             position:sticky;
-            top:100px;
-            height:calc(100vh - 100px);
-            overflow-y:auto;
+            top:120px;
+            height:fit-content;
         }
-        .sidebar-left h2{
-            font-size:34px;
-            margin-bottom:32px;
+        .cate-item{
+            border-bottom:1px solid #eee;
         }
-        .category-item{
-            margin-bottom:8px;
-            border-radius:6px;
-            overflow:hidden;
-            transition:all 0.3s ease;
-        }
-        .category-main{
-            padding:14px 18px;
+        .cate-parent{
+            padding:16px 20px;
             display:flex;
             justify-content:space-between;
             align-items:center;
             cursor:pointer;
-            font-size:20px;
-            transition: all 0.3s ease;
+            font-size:18px;
+            transition:0.3s all;
         }
-        .category-main:hover{
-            background:#007c40;
+        .cate-parent:hover{
+            background:#e8f7ee;
         }
-        .category-main.active{
-            background:#89e872;
-            color:#003b1c;
-            font-weight:bold;
+        .cate-parent.active{
+            background:var(--green);
+            color:#fff;
         }
-        .sub-category{
+        .cate-arrow{
+            transition: transform 0.3s;
+        }
+        .cate-parent.open .cate-arrow{
+            transform:rotate(180deg);
+        }
+        .cate-child{
             max-height:0;
             overflow:hidden;
             transition:max-height 0.4s ease;
-            background:#00572b;
+            background:#f8fbf9;
         }
-        .sub-category.open{
-            max-height:200px;
-        }
-        .sub-category a{
+        .cate-child a{
             display:block;
             padding:12px 32px;
-            color:#fff;
+            color:#333;
             text-decoration:none;
-            font-size:18px;
-            transition:background 0.25s;
+            transition:0.25s;
         }
-        .sub-category a:hover{
-            background:#004924;
+        .cate-child a:hover{
+            color:var(--green);
+            padding-left:40px;
         }
-        .arrow{
-            transition:transform 0.3s ease;
-        }
-        .arrow.rotate{
-            transform:rotate(180deg);
+        .cate-child.show{
+            max-height:300px;
         }
 
         /* 右侧产品主区域 */
-        .product-right{
-            width:72%;
-            padding:40px 50px;
+        .product-main{
+            flex:1;
         }
-        /* 顶部产品详情预览模块 */
-        .product-top-preview{
-            display:flex;
-            gap:40px;
-            background:#edf7ee;
-            padding:32px;
-            border-radius:12px;
-            margin-bottom:48px;
-            align-items:center;
-        }
-        .preview-img-box{
-            width:60%;
-            overflow:hidden;
-            border-radius:8px;
-        }
-        .preview-img-box img{
-            width:100%;
-            transition:transform 0.4s ease;
-        }
-        .preview-img-box:hover img{
-            transform:scale(1.04);
-        }
-        .preview-info{
-            width:40%;
-        }
-        .preview-info h2{
-            font-size:36px;
-            color:#222;
+        .current-cate-title{
+            font-size:32px;
+            color:var(--green);
             margin-bottom:12px;
         }
-        .preview-info .desc-text{
-            font-size:18px;
-            color:#444;
-            margin-bottom:24px;
-        }
-        .preview-info p{
+        .current-cate-desc{
+            color:#555;
             font-size:17px;
-            line-height:1.8;
-            margin-bottom:10px;
-        }
-        .quote-btn{
-            margin-top:20px;
-            background:#006633;
-            color:#fff;
-            border:none;
-            padding:14px 30px;
-            border-radius:6px;
-            font-size:18px;
-            cursor:pointer;
-            transition:0.3s;
-        }
-        .quote-btn:hover{
-            background:#004924;
+            margin-bottom:40px;
         }
 
-        /* 产品网格，每行2个 */
+        /* 产品网格：一行3个 */
         .product-grid{
             display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap:36px;
+            grid-template-columns: repeat(3, 1fr);
+            gap:30px;
+        }
+        .product-row{
+            display:contents;
         }
         .product-card{
-            opacity:0;
-            transform:translateY(25px);
-            transition:all 0.5s ease;
             background:#fff;
-            border:1px solid #e9eee9;
-            border-radius:10px;
+            border-radius:14px;
             overflow:hidden;
-        }
-        .product-card.show{
-            opacity:1;
-            transform:translateY(0);
+            box-shadow:0 4px 14px rgba(0,0,0,0.08);
+            cursor:pointer;
+            transition: all 0.6s ease;
         }
         .product-card img{
             width:100%;
-            height:240px;
+            height:220px;
             object-fit:cover;
         }
         .product-card .card-text{
             padding:18px;
         }
         .product-card h4{
-            font-size:20px;
+            font-size:19px;
             color:#222;
-            margin-bottom:8px;
+            margin-bottom:6px;
         }
-        .product-card .model{
-            color:#555;
-            font-size:16px;
+        .product-card p{
+            color:#666;
+            font-size:15px;
+        }
+        /* 同行卡片渐隐样式 */
+        .product-row.fade-siblings .product-card:not(.active-card){
+            opacity:0.15;
+            pointer-events:none;
+        }
+        .product-card.active-card{
+            transform:translateX(-220px);
         }
 
-        /* 分页区域 */
-        .pagination{
-            margin-top:50px;
-            display:flex;
-            gap:12px;
-            justify-content:center;
-        }
-        .page-btn{
-            padding:10px 16px;
-            border:1px solid #006633;
+        /* 产品详情面板，右侧滑出 */
+        .product-detail-panel{
+            position:fixed;
+            top:120px;
+            right:-480px;
+            width:440px;
             background:#fff;
-            color:#006633;
-            border-radius:4px;
+            box-shadow:-5px 0 25px rgba(0,0,0,0.12);
+            border-radius:16px 0 0 16px;
+            padding:32px;
+            transition:right 0.6s ease;
+            z-index:900;
+        }
+        .product-detail-panel.show{
+            right:0;
+        }
+        .detail-close{
+            position:absolute;
+            top:20px;
+            right:24px;
+            font-size:26px;
             cursor:pointer;
+            color:#666;
+        }
+        .detail-row{
+            margin-bottom:16px;
+            line-height:1.7;
+        }
+        .detail-row strong{
+            color:#222;
+            min-width:110px;
+            display:inline-block;
+        }
+        .unit-toggle-btn{
+            background:#cccccc;
+            border:none;
+            padding:5px 10px;
+            border-radius:6px;
+            color:#222;
+            cursor:pointer;
+            margin-left:12px;
             transition:0.3s;
         }
-        .page-btn.active{
-            background:#006633;
-            color:white;
-        }
-        .page-btn:hover:not(.active){
-            background:#edf7ee;
+        .unit-toggle-btn:hover{
+            background:#b8b8b8;
         }
 
         /* 移动端适配 */
-        @media (max-width:768px){
-            .product-page-wrap{
+        @media(max-width:992px){
+            .product-wrap{
                 flex-direction:column;
             }
-            .sidebar-left,.product-right{
+            .sidebar-cate{
                 width:100%;
                 position:static;
-                height:auto;
             }
-            .product-top-preview{
-                flex-direction:column;
+            .product-grid{
+                grid-template-columns: repeat(2,1fr);
             }
-            .preview-img-box,.preview-info{
+            .product-card.active-card{
+                transform:none;
+            }
+            .product-detail-panel{
                 width:100%;
+                right:-100%;
             }
+        }
+        @media(max-width:576px){
             .product-grid{
                 grid-template-columns:1fr;
             }
             nav{
-                height:auto;
-                flex-direction:column;
-                padding:20px;
+                padding:0 20px;
             }
             .nav-menu{
-                margin-right:0;
-                margin-top:16px;
-                gap:20px;
+                gap:16px;
+                margin-right:10px;
+            }
+            .nav-menu a{
+                font-size:16px;
             }
         }
     </style>
 </head>
 <body>
-<!--导航栏-->
-<nav>
-    <div class="nav-logo">
-        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/logo1.home.jpg" alt="Harmony Pack Logo">
+        </div>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html" class="active">Products</a>
+            <a href="news.html">News</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="product-wrap">
+        <!-- 左侧分类菜单 -->
+        <aside class="sidebar-cate">
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Plastic Sushi Container
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Paper Sushi Container
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Bagasse Bento Box
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Party Tray
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Sauce Bottle
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+            <div class="cate-item">
+                <div class="cate-parent">
+                    Paper Bag
+                    <span class="cate-arrow">▼</span>
+                </div>
+                <div class="cate-child">
+                    <a href="#">A</a>
+                    <a href="#">B</a>
+                    <a href="#">C</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 右侧产品区域 -->
+        <main class="product-main">
+            <h2 class="current-cate-title">Plastic Sushi Container</h2>
+            <p class="current-cate-desc">High quality food grade plastic sushi packaging for restaurant & wholesale</p>
+
+            <div class="product-grid">
+                <!-- 产品行1 三个产品 -->
+                <div class="product-row">
+                    <div class="product-card" data-subcate="Plastic Sushi Container" data-item="HP-01"
+                         data-base-mm="200,100,55" data-lid-mm="205,105,25"
+                         data-material-base="OPS" data-material-lid="PET (anti-fog)"
+                         data-temp="5℃ to 60℃ (Not microwave safe)"
+                         data-packing="Inner: PE Bag; Outer: Carton, 300Sets/CTN">
+                        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products/home1.jpg" alt="HP-01">
+                        <div class="card-text">
+                            <h4>HP-01 Sushi Box</h4>
+                            <p>Food grade OPS container</p>
+                        </div>
+                    </div>
+                    <div class="product-card" data-subcate="Plastic Sushi Container" data-item="HP-02"
+                         data-base-mm="220,110,60" data-lid-mm="225,115,28"
+                         data-material-base="OPS" data-material-lid="PET (anti-fog)"
+                         data-temp="-20℃ to 100℃ (Microwave available)"
+                         data-packing="Inner: PE Bag; Outer: Carton, 250Sets/CTN">
+                        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products/home2.jpg" alt="HP-02">
+                        <div class="card-text">
+                            <h4>HP-02 Sushi Box</h4>
+                            <p>Microwave available</p>
+                        </div>
+                    </div>
+                    <div class="product-card" data-subcate="Plastic Sushi Container" data-item="HP-03"
+                         data-base-mm="180,90,50" data-lid-mm="185,95,22"
+                         data-material-base="PP" data-material-lid="PP"
+                         data-temp="-20℃ to 120℃ (Microwave safe)"
+                         data-packing="Inner: PE Bag; Outer: Carton,350Sets/CTN">
+                        <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products/home3.jpg" alt="HP-03">
+                        <div class="card-text">
+                            <h4>HP-03 Sushi Box</h4>
+                            <p>PP recyclable container</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 你后续继续在这里添加更多product-row，一行3个card -->
+            </div>
+        </main>
     </div>
-    <div class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="products.html" class="active">Products</a>
-        <a href="news.html">News</a>
-        <a href="contact.html">Contact</a>
-    </div>
-</nav>
 
-<div class="product-page-wrap">
-    <!--左侧固定侧边分类栏-->
-    <div class="sidebar-left">
-        <h2>Product Categories</h2>
-        <!--类目1-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Food Containers</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
+    <!-- 产品详情弹出面板 -->
+    <div class="product-detail-panel">
+        <span class="detail-close">×</span>
+        <div class="detail-row"><strong>Category:</strong><span id="det-cate"></span></div>
+        <div class="detail-row"><strong>Item Name:</strong><span id="det-item"></span></div>
+        <div class="detail-row">
+            <strong>Size：</strong>
+            <span id="det-size-text"></span>
+            <button class="unit-toggle-btn">Convert to in</button>
         </div>
-        <!--类目2（默认选中激活）-->
-        <div class="category-item">
-            <div class="category-main active" onclick="toggleSub(this)">
-                <span>Paper Packaging</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category open">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
-        <!--类目3-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Bagasse Products</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
-        <!--类目4-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Party Trays</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
-        <!--类目5-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Sauce Bottles</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
-        <!--类目6-->
-        <div class="category-item">
-            <div class="category-main" onclick="toggleSub(this)">
-                <span>Paper Bags</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="sub-category">
-                <a href="#">A</a>
-                <a href="#">B</a>
-                <a href="#">C</a>
-            </div>
-        </div>
+        <div class="detail-row"><strong>Material:</strong><span id="det-mat"></span></div>
+        <div class="detail-row"><strong>Temperature:</strong><span id="det-temp"></span></div>
+        <div class="detail-row"><strong>Packing:</strong><span id="det-pack"></span></div>
     </div>
 
-    <!--右侧产品主区域-->
-    <div class="product-right">
-        <!--顶部预览区域-->
-        <div class="product-top-preview">
-            <div class="preview-img-box">
-                <img src="https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg" alt="product preview">
-            </div>
-            <div class="preview-info">
-                <h2>Paper Packaging</h2>
-                <p class="desc-text">Safe, sturdy and convenient containers for food service and retail.</p>
-                <p><strong>Material:</strong> Food Grade Paper</p>
-                <p><strong>Usage:</strong> Takeaway, Retail, Catering</p>
-                <p><strong>Feature:</strong> Leak-proof, Stackable, Compostable</p>
-                <p>Suitable for rice meals, salads, bakery and cold food.</p>
-                <button class="quote-btn">Get a Quote</button>
-            </div>
-        </div>
-
-        <!--产品卡片网格容器-->
-        <div class="product-grid" id="productGrid">
-            <!--JS动态渲染产品卡片-->
-        </div>
-
-        <!--分页按钮-->
-        <div class="pagination" id="paginationBox">
-        </div>
-    </div>
-</div>
-
-<script>
-// 控制侧边栏子类目展开收起
-function toggleSub(el){
-    const subMenu = el.nextElementSibling;
-    const arrow = el.querySelector('.arrow');
-    subMenu.classList.toggle('open');
-    arrow.classList.toggle('rotate');
-}
-
-// 产品基础数据，共25个产品
-const allProducts = [
-    {name:"Box Set",model:"HP-01",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Food Tray",model:"HP-02",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Sushi Box",model:"HP-03",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Paper Bowl",model:"HP-04",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Dip Cup",model:"HP-05",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Lunch Box",model:"HP-06",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Snack Tray",model:"HP-07",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Meal Pack",model:"HP-08",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Salad Box",model:"HP-09",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Bread Box",model:"HP-10",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Noodle Box",model:"HP-11",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Dessert Tray",model:"HP-12",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Takeout Pack",model:"HP-13",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Portion Box",model:"HP-14",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"BBQ Tray",model:"HP-15",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Fruit Box",model:"HP-16",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Pasta Box",model:"HP-17",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Seafood Tray",model:"HP-18",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Hot Food Box",model:"HP-19",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Buffet Tray",model:"HP-20",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Deli Pack",model:"HP-21",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Oval Tray",model:"HP-22",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-    {name:"Round Bowl",model:"HP-23",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%202.jpg"},
-    {name:"Meat Tray",model:"HP-24",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%203.jpg"},
-    {name:"Combo Pack",model:"HP-25",img:"https://raw.githubusercontent.com/xz775818301-prog/xz775818301-prog.github.io/refs/heads/main/products%20home%201.jpg"},
-]
-
-const itemsPerPage = 20;
-let currentPage = 1;
-
-//渲染产品卡片
-function renderProducts(pageNum){
-    const grid = document.getElementById("productGrid");
-    grid.innerHTML = "";
-    const start = (pageNum-1)*itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageProducts = allProducts.slice(start,end);
-    pageProducts.forEach(item=>{
-        const card = document.createElement('div');
-        card.className="product-card";
-        card.innerHTML = `
-            <img src="${item.img}" alt="${item.name}">
-            <div class="card-text">
-                <h4>${item.name}</h4>
-                <div class="model">Model: ${item.model}</div>
-            </div>
-        `
-        grid.appendChild(card);
-    })
-    //卡片渐入上浮动画
-    setTimeout(()=>{
-        document.querySelectorAll('.product-card').forEach(card=>{
-            card.classList.add('show');
+    <script>
+        // 左侧分类下拉展开
+        document.querySelectorAll('.cate-parent').forEach(item=>{
+            item.addEventListener('click', function(){
+                this.classList.toggle('open');
+                this.nextElementSibling.classList.toggle('show');
+                document.querySelectorAll('.cate-parent').forEach(p=>{
+                    if(p!==this) p.classList.remove('open');
+                    if(p.nextElementSibling && p!==this) p.nextElementSibling.classList.remove('show');
+                })
+            })
         })
-    },100)
-    renderPagination();
-}
 
-//渲染分页
-function renderPagination(){
-    const totalPages = Math.ceil(allProducts.length / itemsPerPage);
-    const paginationBox = document.getElementById("paginationBox");
-    paginationBox.innerHTML = "";
-    for(let i=1;i<=totalPages;i++){
-        const btn = document.createElement('button');
-        btn.className = "page-btn"+(i===currentPage?" active":"");
-        btn.textContent = i;
-        btn.onclick = ()=>{
-            currentPage = i;
-            renderProducts(currentPage);
+        // 产品卡片点击逻辑
+        const gridWrap = document.querySelector('.product-grid');
+        const panel = document.querySelector('.product-detail-panel');
+        const closeBtn = document.querySelector('.detail-close');
+        let useInch = false;
+        let currentBaseMm, currentLidMm;
+
+        // mm转英寸，保留1位小数，四舍五入
+        function mm2inch(mm){
+            const inch = mm * 0.03937;
+            return inch.toFixed(1);
         }
-        paginationBox.appendChild(btn);
-    }
-}
+        function renderSizeText(){
+            if(!currentBaseMm) return;
+            let b1 = currentBaseMm[0],b2=currentBaseMm[1],b3=currentBaseMm[2];
+            let l1 = currentLidMm[0],l2=currentLidMm[1],l3=currentLidMm[2];
+            if(useInch){
+                b1=mm2inch(b1);b2=mm2inch(b2);b3=mm2inch(b3);
+                l1=mm2inch(l1);l2=mm2inch(l2);l3=mm2inch(l3);
+                document.querySelector('.unit-toggle-btn').innerText="Convert to mm";
+            }else{
+                document.querySelector('.unit-toggle-btn').innerText="Convert to in";
+            }
+            document.getElementById('det-size-text').innerText = `Base：${b1}*${b2}*${b3}${useInch?'in':'mm'}, Lid: ${l1}*${l2}*${l3}${useInch?'in':'mm'}`;
+        }
 
-//页面加载执行
-window.onload = function(){
-    renderProducts(currentPage);
-}
-</script>
+        // 单位切换按钮
+        document.querySelector('.unit-toggle-btn').addEventListener('click',()=>{
+            useInch = !useInch;
+            renderSizeText();
+        })
+
+        document.querySelectorAll('.product-card').forEach(card=>{
+            card.addEventListener('click',()=>{
+                // 清除上一轮状态
+                document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
+                document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
+
+                // 当前行设置渐隐，当前卡片左移
+                const row = card.closest('.product-row');
+                row.classList.add('fade-siblings');
+                card.classList.add('active-card');
+
+                // 读取卡片自定义属性
+                const subcate = card.dataset.subcate;
+                const item = card.dataset.item;
+                currentBaseMm = card.dataset.baseMm.split(',').map(Number);
+                currentLidMm = card.dataset.lidMm.split(',').map(Number);
+                const matBase = card.dataset.materialBase;
+                const matLid = card.dataset.materialLid;
+                const temp = card.dataset.temp;
+                const pack = card.dataset.packing;
+
+                document.getElementById('det-cate').innerText = subcate;
+                document.getElementById('det-item').innerText = item;
+                document.getElementById('det-mat').innerText = `Base：${matBase}，Lid：${matLid}`;
+                document.getElementById('det-temp').innerText = temp;
+                document.getElementById('det-pack').innerText = pack;
+                useInch=false;
+                renderSizeText();
+
+                // 详情面板渐显滑入
+                panel.classList.add('show');
+            })
+        })
+        // 关闭详情面板
+        closeBtn.addEventListener('click',()=>{
+            panel.classList.remove('show');
+            document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active-card'));
+            document.querySelectorAll('.product-row').forEach(r=>r.classList.remove('fade-siblings'));
+        })
+    </script>
 </body>
 </html>
